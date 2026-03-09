@@ -7,6 +7,7 @@ export const headerTriggerConfig = {
   scrub: false,
   toggleActions: "play none none reverse",
   invalidateOnRefresh: true,
+  markers: false,
 }
 
 // ABOUT 섹션
@@ -19,6 +20,7 @@ export const profileTriggerConfig = {
   pinSpacing: false,
   scrub: false,
   toggleActions: "play none none reverse",
+  markers: false,
 }
 
 export const aboutTriggerConfig = {
@@ -29,7 +31,7 @@ export const aboutTriggerConfig = {
   scrub: 1,
   pin: true,
   pinSpacing: false,
-  markers: true,
+  markers: false,
 }
 
 // SKILLS 섹션
@@ -41,7 +43,7 @@ export const skillsTriggerConfig = {
   scrub: 1,
   pin: true,
   pinSpacing: false,
-  markers: true,
+  markers: false,
 }
 
 // PROJECTS 섹션
@@ -52,7 +54,7 @@ export const projectsTriggerConfig = {
   end: "+=100%",
   scrub: 1,
   pin: true,
-  markers: true,
+  markers: false,
 }
 
 // CLOSING 섹션
@@ -62,7 +64,7 @@ export const closingTriggerConfig = {
   start: "top bottom",
   end: "+=100%",
   scrub: 1,
-  markers: true,
+  markers: false,
 }
 
 export const closeHeaderConfig = {
@@ -71,5 +73,5 @@ export const closeHeaderConfig = {
   start: "top 80px",
   end: "+=80",
   scrub: true,
-  markers: true,
+  markers: false,
 }
