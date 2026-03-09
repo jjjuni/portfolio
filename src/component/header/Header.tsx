@@ -54,7 +54,7 @@ const HeaderToggle = ({
   return (
     <div
       className={`header-toggle ${toggleClass} ${currentToggle === title ? `${currentToggleClass}` : ``} ${!enabled && `pointer-events-none`}`}
-      onClick={() => handleToggle(title, id, appearRatio)}>
+      onClick={() => handleToggle(id, appearRatio)}>
       {title}.
     </div>
   )
