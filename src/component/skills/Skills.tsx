@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import useToggleStore from "../../stores/useToggleStore";
 import LogoLoop from "./logoLoop/LogoLoop";
 import LogoItem from "./logoLoop/LogoItem";
