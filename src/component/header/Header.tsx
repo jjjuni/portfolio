@@ -33,7 +33,7 @@ type HeaderToggleProps = {
   id: string;
   appearRatio: number;
   currentToggle: string;
-  handleToggle: DebouncedFuncLeading<(title: string, id: string, appearRatio: number) => void>;
+  handleToggle: DebouncedFuncLeading<(id: string, appearRatio: number) => void>;
 }
 
 const HeaderToggle = ({
@@ -110,8 +110,7 @@ export default function Header({ lenisRef }: { lenisRef: React.RefObject<Lenis |
 
   const handleThrottledToggle = useMemo(
     () =>
-      throttle((title: string, id: string, appearRatio: number) => {
-        setCurrentToggle(title);
+      throttle((id: string, appearRatio: number) => {
         scrollToTrigger(id, appearRatio, lenisRef);
       }, 1000, { leading: true, trailing: false }),
     [setCurrentToggle]
