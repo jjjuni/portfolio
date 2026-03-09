@@ -8,6 +8,59 @@
   src: url("/fonts/NotoSansKR-variable.ttf") format("ttf-variations");
 }
 
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Racing sans";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/RacingSansOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Paperlogy-6SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gmarket sans";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Abel";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Abel-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space mono";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/SpaceMono-bold.ttf") format("truetype");
+}
+
 @layer components {
   .center-absolute {
     position: absolute;
@@ -16,7 +69,7 @@
     transform: translate(-50%, -50%);
   }
 
-  .no-scroll {
+  .scrollbar-none {
     scrollbar-width: none;
   }
 
@@ -26,15 +79,32 @@
 }
 
 @theme {
-  --color-sidebar-bg: #1a1a1a;
-  --color-bg: #232323;
+  --color-sidebar-bg: #232323;
+  --color-bg: #1a1a1a;
 
   --color-title: #acacac;
   --color-title-hover: #ffffff;
+
+  --font-noto: 'Noto Variable';
+  --font-pretendard: 'Pretendard Variable', sans-serif;
+  --font-racing: 'Racing sans';
+  --font-paperlogy: 'Paperlogy';
+  --font-gmarket: 'Gmarket sans';
+  --font-abel: 'Abel';
+  --font-space-mono: 'Space mono';
 }
 
 
+html,
 body {
   margin: 0;
-  font-family: Noto Variable;
+  font-family: Pretendard Variable;
+  color: white;
+  background-color: #1a1a1a;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.header-p {
+  padding-top: 80px;
 }
