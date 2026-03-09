@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./component/header/Header";
 import About from "./component/about/About";
@@ -14,13 +14,10 @@ function App() {
 
   const { stop, start, lenisRef } = useLenisScroll();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     history.scrollRestoration = "manual";
-
-    window.scrollTo(0, 0);
-
     ScrollTrigger.clearScrollMemory();
-    ScrollTrigger.refresh();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
