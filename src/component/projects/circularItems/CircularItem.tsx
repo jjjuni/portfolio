@@ -54,8 +54,8 @@ export default function CircularItem({
       />
       <div className={`p-4 flex flex-col gap-2`}>
         <div className={`flex flex-col gap-1`}>
-          <p className={`text-[20px] font-bold`}>{item.title}</p>
-          <p className={`text-[12px] font-light text-[#9C9C9C]`}>{item.desc}</p>
+          <p className={`max-md:text-[16px] text-[20px] font-bold`}>{item.title}</p>
+          <p className={`max-md:text-[10px] text-[12px] font-light text-[#9C9C9C]`}>{item.desc}</p>
         </div>
         <div className={`flex flex-row gap-1`}>
           {item.parts?.map((part, index) => (
@@ -64,7 +64,7 @@ export default function CircularItem({
         </div>
         <div>
           {item.skills?.map((SkillIcon, index) => (
-            <SkillIcon key={index} className="w-5 h-5 inline-block mr-2" />
+            <SkillIcon key={index} className="max-md:w-4 max-md:h-4 size-5 inline-block mr-2" />
           ))}
         </div>
       </div>

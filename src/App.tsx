@@ -7,10 +7,12 @@ import Skills from "./component/skills/Skills";
 import useLenisScroll from "./hooks/useLenisScroll";
 import Closing from "./component/closing/Closing";
 import useModalStore from "./stores/useModalStore";
+import { useSizeStore } from "./stores/useSizeStore";
 
 function App() {
 
   const { isModalOpen } = useModalStore();
+  const { setSize } = useSizeStore();
 
   const { stop, start, lenisRef } = useLenisScroll();
 
@@ -45,9 +47,20 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const update = () => {
+      setSize(window.innerWidth, window.innerHeight);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+
+    return () => window.removeEventListener("resize", update);
+  }, [setSize]);
+
   return (
     <>
-      <div id="page" className="w-screen h-screen select-none">
+      <div id="page" className="w-screen h-[100dvh] select-none">
         <Header lenisRef={lenisRef} />
         <About />
         <Skills />

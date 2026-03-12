@@ -7,8 +7,8 @@ export type TimelineBuilder = (tl: gsap.core.Timeline) => void;
 
 type ScrollTriggerConfig = {
   trigger: string | HTMLElement;
-  start?: string;
-  end?: string;
+  start?: string | (() => string);
+  end?: string | (() => string);
   scrub?: number | boolean;
   pin?: boolean;
   pinSpacing?: boolean;
@@ -63,10 +63,12 @@ export function useScrollSectionList(scrollTriggerList: ScrollTriggerConfig[]) {
       ScrollTrigger.refresh();
     }, 150);
 
-    window.addEventListener("resize", onResize);
+    if (navigator.maxTouchPoints === 0)
+      window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener("resize", onResize);
+      if (navigator.maxTouchPoints === 0)
+        window.removeEventListener("resize", onResize);
       onResize.cancel();
       ctx?.revert();
     };
@@ -105,10 +107,12 @@ export const useScrollSection = (scrollTrigger: ScrollTriggerConfig) => {
       ScrollTrigger.refresh();
     }, 150);
 
-    window.addEventListener("resize", onResize);
+    if (navigator.maxTouchPoints === 0)
+      window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener("resize", onResize);
+      if (navigator.maxTouchPoints === 0)
+        window.removeEventListener("resize", onResize);
       onResize.cancel();
       ctx?.revert();
     };

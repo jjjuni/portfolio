@@ -4,7 +4,7 @@ const BgLabel = ({
 
   return (
     <div className={`rounded-[4px] px-1.5 py-1 bg-[#5D5D5D]`}>
-      <p className={`text-[18px] font-bold`}>{text}</p>
+      <p className={`text-14-16-18 font-bold`}>{text}</p>
     </div>
   )
 }

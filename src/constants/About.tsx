@@ -30,17 +30,17 @@ export const EXPERIENCE_LIST_copy = [
 export const EXPERIENCE_LIST = [
   {
     date: "2020.03 ~ 2026.02",
-    icon: <SKUnivIcon className={`w-4 h-4`}/>,
+    icon: <SKUnivIcon className={`size-4 shrink-0`}/>,
     desc: "서경대학교 소프트웨어학과 졸업",
   },
   {
     date: "2024.09 ~ 2025.01",
-    icon: <UMCIcon className={`w-4 h-4`}/>,
+    icon: <UMCIcon className={`size-4 shrink-0`}/>,
     desc: "University MakeUs Challenge 7기",
   },
   {
     date: "2025.02 ~ 2025.07",
-    icon: <SKUnivIcon className={`w-4 h-4`}/>,
+    icon: <SKUnivIcon className={`size-4 shrink-0`}/>,
     desc: "서경 SW 아카데미 수료",
   },
 ]

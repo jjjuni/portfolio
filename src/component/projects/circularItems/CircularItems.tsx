@@ -199,7 +199,7 @@ export default function CircularItems({
   ]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full overflow-hidden select-none">
+    <div ref={containerRef} className={`relative w-full h-full overflow-hidden select-none`}>
       <div className="absolute inset-0 flex items-center">
         <div
           ref={railRef}

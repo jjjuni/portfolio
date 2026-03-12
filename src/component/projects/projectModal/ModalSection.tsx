@@ -7,8 +7,8 @@ const ModalSection = ({
 }: { label: string, className?: string, children: ReactNode }) => {
 
   return (
-    <div className={`${className} flex flex-col gap-2 px-5`}>
-      <p className={`text-[24px] font-bold`}>{label}</p>
+    <div className={`${className} flex flex-col gap-2 max-sm:px-3 px-5`}>
+      <p className={`max-sm:text-[18px] max-md:text-[20px] text-[24px] font-bold`}>{label}</p>
       {children}
     </div>
   )

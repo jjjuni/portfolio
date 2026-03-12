@@ -3,8 +3,8 @@ const ListBullet = ({
   color
 }: { className?: string, color?: string }) => {
   return (
-    <div className={`h-6 flex items-center`}>
-      <span className={`${className} ${color ? color : `bg-white`} rounded-full w-1 h-1 shrink-0`} />
+    <div className={`max-sm:h-4 max-md:h-5 h-6 flex items-center`}>
+      <span className={`${className} ${color ? color : `bg-white`} rounded-full size-1 shrink-0`} />
     </div>
   )
 }

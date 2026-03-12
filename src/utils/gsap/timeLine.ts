@@ -1,6 +1,6 @@
 // HEADER
 export const headerTimeline = (tl: gsap.core.Timeline) => {
-  tl.fromTo("#Header", { y: 0 }, { y: () => -window.innerHeight + 80, duration: 0.8 }, 0);
+  tl.fromTo("#Header", { yPercent: 0, y: 0 }, { yPercent: -100, y: () => (window.innerWidth < 768 ? 60 : 80), duration: 0.8, }, 0);
   tl.fromTo("#HeaderBg", { opacity: 1 }, { opacity: 0 }, 0);
   tl.fromTo(".initial-title", { opacity: 0.6 }, { opacity: 0 }, 0);
   tl.fromTo(".initial-header", { opacity: 1 }, { opacity: 0 }, 0);
@@ -10,10 +10,17 @@ export const headerTimeline = (tl: gsap.core.Timeline) => {
 
 // ABOUT 섹션
 export const profileTimeLine = (tl: gsap.core.Timeline) => {
-  tl.fromTo("#Profile",
-    { opacity: 1, y: 0 },
-    { opacity: 0, y: -20, ease: "power1.inOut", duration: 0.8 },
-  )
+  tl.fromTo(
+    "#Profile",
+    { opacity: 1, x: 0, y: 0 },
+    {
+      opacity: 0,
+      y: () => (window.innerWidth > 768 ? -20 : -100),
+      ...(window.innerWidth > 768 ? {} : { height: 0 }),
+      ease: "power1.inOut",
+      duration: (window.innerWidth > 768 ? 0.8 : 0.4),
+    }
+  );
 
   tl.fromTo("#Experience_ex",
     { opacity: 0, height: 0 },
@@ -71,7 +78,7 @@ export const closingTimeline = (tl: gsap.core.Timeline) => {
 
 export const closeHeaderTimeline = (tl: gsap.core.Timeline) => {
   tl.fromTo("#Header",
-    { y: -window.innerHeight + 80 },
-    { y: -window.innerHeight, ease: "none" },
+    { y: () => (window.innerWidth < 768 ? 60 : 80) },
+    { y: 0, ease: "none" },
   );
 }

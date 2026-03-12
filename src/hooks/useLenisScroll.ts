@@ -16,6 +16,10 @@ export default function useLenisScroll(
     }
   }, []);
 
+  const handleTouch = useCallback(() => {
+    lenisRef.current?.start();
+  }, []);
+
   const startRaf = useCallback(() => {
     if (!lenisRef.current || isRunning.current) return;
 
@@ -28,7 +32,8 @@ export default function useLenisScroll(
 
     rafId.current = requestAnimationFrame(raf);
     window.addEventListener("wheel", handleWheel, { passive: true });
-  }, [handleWheel]);
+    window.addEventListener("touchstart", handleTouch, { passive: true });
+  }, [handleWheel, handleTouch]);
 
   const stopRaf = useCallback(() => {
     isRunning.current = false;
@@ -39,8 +44,9 @@ export default function useLenisScroll(
     }
 
     window.removeEventListener("wheel", handleWheel);
+    window.removeEventListener("touchstart", handleTouch);
     lenisRef.current?.stop();
-  }, [handleWheel]);
+  }, [handleWheel, handleTouch]);
 
   useEffect(() => {
     const options: ConstructorParameters<typeof Lenis>[0] = {

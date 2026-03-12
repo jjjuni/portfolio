@@ -70,8 +70,8 @@ export const closingTriggerConfig = {
 export const closeHeaderConfig = {
   id: "CloseHeader-trigger",
   trigger: "#Closing",
-  start: "top 80px",
-  end: "+=80",
+  start: () => `top ${window.innerWidth < 768 ? `60` : `80`}px`,
+  end: () => `+=${window.innerWidth < 768 ? `60` : `80`}`,
   scrub: true,
   markers: false,
 }

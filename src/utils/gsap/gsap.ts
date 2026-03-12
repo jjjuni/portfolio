@@ -5,4 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+ScrollTrigger.config({
+  ignoreMobileResize: true
+});
+
+ScrollTrigger.defaults({
+  invalidateOnRefresh: false
+});
+
 export default gsap;

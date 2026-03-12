@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useToggleStore from "../../stores/useToggleStore";
 import LogoLoop from "./logoLoop/LogoLoop";
 import LogoItem from "./logoLoop/LogoItem";
@@ -7,6 +7,7 @@ import { BACKEND_SKILLS, FRONTEND_SKILLS, INFRA_SKILLS } from "../../constants/S
 import { useScrollSection } from "../../hooks/useScrollSection";
 import { skillsTimeline } from "../../utils/gsap/timeLine";
 import { skillsTriggerConfig } from "../../utils/gsap/triggerConfig";
+import { useSizeStore } from "../../stores/useSizeStore";
 
 export default function Skills() {
 
@@ -22,10 +23,10 @@ export default function Skills() {
   })
 
   return (
-    <section id="Skills" className={`w-full h-screen flex flex-col items-center justify-center pt-[80px] gap-10 z-10`}>
+    <section id="Skills" className={`w-full h-[100dvh] flex flex-col items-center justify-center pt-[80px] pb-[40px] gap-10 z-10`}>
       {currentToggle === "SKILLS" && (  // 현재 토글이 SKILLS일 때만 렌더링 -> GSAP 애니메이션과 상태 관리를 최적화
         <>
-          <p className={`font-bold text-[32px]`}>SKILLS</p>
+          <p className={`font-bold max-md:text-[24px] text-[32px]`}>SKILLS</p>
           <div className={`flex flex-col gap-10 w-[80%] overflow-hidden`}>
             <SkillList title="FRONTEND" skillList={FRONTEND_SKILLS} />
             <SkillList title="BACKEND" skillList={BACKEND_SKILLS} />
@@ -47,6 +48,8 @@ type TooltipState = {
 };
 
 const SkillList = ({ title, skillList }: { title: string, skillList: SkillType[] }) => {
+
+  const { isMobile } = useSizeStore();
 
   const [tooltip, setTooltip] = useState<TooltipState>({
     visible: false,
@@ -71,13 +74,25 @@ const SkillList = ({ title, skillList }: { title: string, skillList: SkillType[]
     )
   }))
 
+  const logoState = useMemo(() => {
+    return {
+      logoHeight: !isMobile ? 60 : 40,
+      gap: !isMobile ? 32 : 24,
+      speed: !isMobile ? 120 : 80,
+    };
+  }, [isMobile]);
+
   return (
     <div className={`flex flex-col gap-5`}>
       <div className={`flex flex-row gap-2.5 items-center`}>
-        <p className={`text-[#9C9C9C] text-[20px] shrink-0`}>{title}</p>
+        <p className={`text-[#9C9C9C] max-md:text-[16px] text-[20px] shrink-0`}>{title}</p>
         <span className={`h-[1px] w-full bg-[#9C9C9C] opacity-50`} />
       </div>
-      <LogoLoop logos={skillLogos} />
+      <LogoLoop
+        logoHeight={logoState.logoHeight}
+        gap={logoState.gap}
+        speed={logoState.speed}
+        logos={skillLogos} />
       <AnimatePresence>
         {tooltip.visible && (
           <Tooltip
@@ -110,12 +125,12 @@ const Tooltip = ({
         transform: "translateX(-50%)",
       }}>
       <div className="bg-sidebar-bg px-3.5 py-2.5 rounded-[8px] shadow-lg whitespace-nowrap flex flex-col gap-1.5">
-        <p className="font-semibold">{title}</p>
+        <p className="font-semibold max-md:text-[14px]">{title}</p>
         <div className={`flex flex-col gap-0.5`}>
           {descList.map((desc, i) => (
             <div key={i} className={`flex flex-row gap-2 items-center`}>
-              <span className={`bg-[#D4D4D4] rounded-full w-1 h-1`} />
-              <p className="text-sm text-[#D4D4D4]">
+              <span className={`bg-[#D4D4D4] rounded-full size-1`} />
+              <p className="max-md:text-[12px] text-sm text-[#D4D4D4]">
                 {desc}
               </p>
             </div>

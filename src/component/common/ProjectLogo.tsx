@@ -4,7 +4,7 @@ const ProjectLogo = ({
 }: {title: string, className: string}) => {
 
   return (
-    <p className={`text-[60px] leading-none ${className}`}>{title}</p>
+    <p className={`max-md:text-[40px] text-[60px] leading-none ${className}`}>{title}</p>
   )
 }
 

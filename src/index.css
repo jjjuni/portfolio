@@ -76,6 +76,16 @@
   .transition-300 {
     transition: all 300ms ease-in-out;
   }
+
+  .text-12-14-16 {
+    @apply text-[16px] max-md:text-[14px] max-sm:text-[12px];
+  }
+  .text-14-16-18 {
+    @apply text-[18px] max-md:text-[16px] max-sm:text-[14px];
+  }
+  .text-16-18-20 {
+    @apply text-[20px] max-md:text-[18px] max-sm:text-[16px];
+  }
 }
 
 @theme {

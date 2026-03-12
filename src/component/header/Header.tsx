@@ -9,9 +9,10 @@ import { useScrollSection } from "../../hooks/useScrollSection";
 import { headerTriggerConfig } from "../../utils/gsap/triggerConfig";
 import { headerTimeline } from "../../utils/gsap/timeLine";
 import Lenis from "lenis";
+import { useSizeStore } from "../../stores/useSizeStore";
 
-const toggleClass = 'w-fit h-full px-2 text-center cursor-pointer text-black opacity-60 hover:opacity-100 transition-300 text-[14px] content-center';
-const currentToggleClass = 'text-[24px] -translate-y-0.5 !text-white';
+const toggleClass = 'w-fit h-full px-2 text-center cursor-pointer text-black opacity-60 hover:opacity-100 transition-300 max-md:text-[12px] text-[14px] content-center';
+const currentToggleClass = 'max-md:text-[16px] text-[24px] min-lg:-translate-y-0.5 !text-white';
 
 const scrollToTrigger = (id: string, appearRatio: number, lenisRef: React.RefObject<Lenis | null>) => {
   const trigger = ScrollTrigger.getById(id)!;
@@ -70,7 +71,12 @@ const InitialTitle = ({
   direction
 }: InitialTitleProps) => {
 
-  const xPos = direction === "end" ? -200 : 200
+  const { isMobile } = useSizeStore();
+
+  const xPos = useMemo(() => { 
+    const x = isMobile ? 100 : 200;
+    return direction === "end" ? -x : x
+  }, [])
 
   return (
     <motion.p
@@ -80,7 +86,7 @@ const InitialTitle = ({
         ease: "easeInOut",
         times: [0, 1],
       }}
-      className={`initial-title font-extrabold text-8xl tracking-tighter truncate px-10 ${direction === "end" ? "text-end" : "text-start"}`}>
+      className={`initial-title font-extrabold max-sm:text-[40px] max-md:text-[60px] text-[96px] leading-none tracking-tighter truncate min-lg:px-10 ${direction === "end" ? "text-end" : "text-start"}`}>
       {text}
     </motion.p>
   )
@@ -123,14 +129,14 @@ export default function Header({ lenisRef }: { lenisRef: React.RefObject<Lenis |
   return (
     <div
       id="Header"
-      className={`h-screen w-screen overflow-hidden bg-sidebar-bg z-50 fixed`}>
+      className={`h-[100dvh] w-screen overflow-hidden bg-sidebar-bg z-50 fixed`}>
       <div
         id="HeaderBg"
         className={`w-full h-full z-50 bg-cover bg-[url('/background.png')]`}>
 
       </div>
       <motion.div
-        className={`initial-header center-absolute text-black text-2xl font-light text-center w-full`}>
+        className={`initial-header center-absolute text-black font-light text-center w-full`}>
         <InitialTitle text="INTUITIVE" direction="start" />
         <InitialTitle text="DETAIL-DRIVEN" direction="end" />
         <InitialTitle text="PERFORMANCE" direction="start" />
@@ -140,7 +146,7 @@ export default function Header({ lenisRef }: { lenisRef: React.RefObject<Lenis |
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: 20 }}
           transition={{ duration: 1 }}
-          className={`pt-4`}>프론트엔드 개발자 <span className={`font-bold`}>이준희</span> 입니다.</motion.p>
+          className={`min-lg:pt-4 max-md:text-[16px] text-[24px]`}>프론트엔드 개발자 <span className={`font-bold`}>이준희</span> 입니다.</motion.p>
       </motion.div>
 
       <motion.div
@@ -151,7 +157,7 @@ export default function Header({ lenisRef }: { lenisRef: React.RefObject<Lenis |
           duration: 0.5,
           ease: "easeInOut"
         }}
-        className={`w-full h-[80px] fixed bottom-0 flex flex-row justify-between items-center text-title font-bold select-none px-10`}>
+        className={`w-full max-md:h-[60px] h-[80px] fixed bottom-0 flex flex-row justify-between items-center text-title font-bold select-none max-md:px-5 px-10`}>
 
         <div className={`h-full flex flex-row items-center`}>
           {HEADER_TOGGLE_LIST.map((item) => (
@@ -166,7 +172,7 @@ export default function Header({ lenisRef }: { lenisRef: React.RefObject<Lenis |
         </div>
 
         <div
-          className={`github-icon text-xl text-center cursor-pointer group relative w-fit h-10 flex flex-row items-center gap-1 p-1 text-black transition-300 rounded-[6px] opacity-60 hover:opacity-100 ${!enabled && `pointer-events-none`}`}
+          className={`github-icon text-xl text-center cursor-pointer group relative w-fit max-md:h-8 h-10 flex flex-row items-center gap-1 p-1 text-black transition-300 rounded-[6px] opacity-60 hover:opacity-100 ${!enabled && `pointer-events-none`}`}
           onClick={() => window.open('https://github.com/jjjuni')}>
           <GithubIcon className={`w-full h-full block transition-300`} />
         </div>
