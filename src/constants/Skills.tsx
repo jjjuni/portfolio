@@ -15,24 +15,24 @@ export const FRONTEND_SKILLS = [
     title: "TypeScript",
     descList: [
       "정적 타입 기반 안정적인 코드 설계",
-      "제네릭과 유틸 타입을 활용한 재사용 가능한 컴포넌트 작성",
-      "API 응답 타입 정의 및 타입 안전성 보장"
+      "제네릭 및 유틸리티 타입 활용 재사용 컴포넌트 구현",
+      "API 응답 타입 정의 및 타입 안전성 관리"
     ]
   },
   {
     Logo: ReactIcon,
     title: "React",
     descList: [
-      "Hooks 기반 상태 관리 및 로직 분리",
-      "컴포넌트 단위 아키텍처 설계",
-      "SPA 환경에서의 동적 렌더링 최적화"
+      "Hooks 기반 상태 관리 및 로직 분리 구조 설계",
+      "컴포넌트 단위 UI 아키텍처 설계",
+      "렌더링 흐름 기반 SPA 성능 최적화"
     ]
   },
   {
     Logo: NextjsIcon,
     title: "Next.js",
     descList: [
-      "SSR/CSR 전략 설계 및 SEO 최적화",
+      "SSR / CSR 전략 기반 렌더링 구조 설계",
       "파일 기반 라우팅 및 동적 라우트 구성",
       "API Route를 활용한 서버 기능 구현"
     ]
@@ -43,16 +43,16 @@ export const FRONTEND_SKILLS = [
     descList: [
       "유틸리티 기반 반응형 UI 설계",
       "디자인 시스템 구축 및 일관된 스타일 관리",
-      "커스텀 테마 및 다크모드 구현"
+      "커스텀 테마 구현"
     ]
   },
   {
     Logo: GsapIcon,
     title: "GSAP",
     descList: [
-      "스크롤 기반 인터랙션 애니메이션 구현",
+      "ScrollTrigger 기반 스크롤 인터랙션 구현",
       "타임라인 제어를 통한 정교한 모션 설계",
-      "UI/UX 흐름을 고려한 사용자 경험 강화"
+      "UI/UX 흐름을 고려한 인터렉션 모션 구현"
     ]
   },
   {
@@ -61,7 +61,7 @@ export const FRONTEND_SKILLS = [
     descList: [
       "Next.js 프로젝트 배포 및 환경 변수 관리",
       "Preview 배포를 통한 협업 환경 구성",
-      "Edge Network 기반 빠른 서비스 제공"
+      "Edge Network 기반 서비스 배포"
     ]
   },
   {
@@ -69,8 +69,8 @@ export const FRONTEND_SKILLS = [
     title: "Figma",
     descList: [
       "Auto Layout 기반 UI 설계",
-      "컴포넌트 시스템 및 디자인 토큰 관리",
-      "개발 관점에서 구현 가능한 디자인 설계"
+      "컴포넌트 기반 디자인 시스템 관리",
+      "개발 구현을 고려한 UI 설계"
     ]
   },
 ]
@@ -92,7 +92,7 @@ export const BACKEND_SKILLS = [
     descList: [
       "RESTful API 설계 및 구현",
       "JWT 기반 인증/인가 처리",
-      "JPA를 활용한 데이터베이스 연동"
+      "JPA 기반 데이터베이스 연동"
     ]
   },
   {
@@ -100,7 +100,7 @@ export const BACKEND_SKILLS = [
     title: "Python",
     descList: [
       "데이터 처리 및 자동화 스크립트 작성",
-      "API 서버 및 간단한 백엔드 로직 구현",
+      "API 서버 및 백엔드 로직 구현",
       "비동기 기반 서버 구조 설계"
     ]
   },
@@ -108,8 +108,8 @@ export const BACKEND_SKILLS = [
     Logo: FastapiIcon,
     title: "FastAPI",
     descList: [
-      "고성능 비동기 API 서버 구현",
-      "Pydantic 기반 데이터 검증",
+      "비동기 API 서버 구현",
+      "Pydantic 기반 API 요청 데이터 검증",
       "Swagger 자동 문서화 활용"
     ]
   },
@@ -119,7 +119,7 @@ export const BACKEND_SKILLS = [
     descList: [
       "정규화 기반 데이터베이스 설계",
       "복잡한 JOIN 및 쿼리 최적화",
-      "인덱스 설계를 통한 성능 개선"
+      "인덱스 설계를 통한 성능 최적화"
     ]
   },
   {
@@ -127,17 +127,17 @@ export const BACKEND_SKILLS = [
     title: "MongoDB",
     descList: [
       "NoSQL 기반 유연한 스키마 설계",
-      "Aggregation 파이프라인 활용",
-      "실시간 데이터 처리 구조 설계"
+      "Document 기반 데이터 모델링 및 CRUD 구현",
+      "MongoDB 기반 애플리케이션 데이터 관리"
     ]
   },
   {
     Logo: FirebaseIcon,
     title: "Firebase",
     descList: [
-      "Authentication 기반 사용자 관리",
-      "Firestore를 활용한 실시간 데이터 처리",
-      "Hosting 및 간편 배포 환경 구성"
+      "NoSQL 데이터 모델 설계",
+      "실시간 데이터 동기화 구조 구현",
+      "컬렉션 / 도큐먼트 구조 기반 데이터 관리"
     ]
   },
   {
@@ -184,9 +184,9 @@ export const INFRA_SKILLS = [
     Logo: AwsIcon,
     title: "AWS",
     descList: [
-      "EC2 기반 서버 배포 및 운영",
-      "S3 정적 파일 관리",
-      "보안 그룹 및 네트워크 설정"
+      "EC2 기반 애플리케이션 서버 배포 및 운영",
+      "Load Balancer를 활용한 HTTPS 인증서 적용 및 트래픽 라우팅 구성",
+      "Route53 기반 도메인 DNS 및 서비스 연결 설정"
     ]
   },
   {
