@@ -40,8 +40,8 @@ const ProjectModalContent = () => {
 
   const [projectDetail, setProjectDetail] = useState<ProjectDetail | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [currentImgIndex, setCurrentImgIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [[currentImgIndex, direction], setSliderState] = useState([0, 0]);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const ref = useRef<HTMLDivElement | null>(null);
   const touchStartY = useRef(0);
@@ -63,27 +63,31 @@ const ProjectModalContent = () => {
 
   const nextImage = (e: MouseEvent) => {
     e.stopPropagation();
-    if (!projectDetail?.images) return;
-    setDirection(1);
-    setCurrentImgIndex((prev) => (prev + 1) % projectDetail.images!.length);
+    if (!projectDetail?.images || isAnimating) return;
+    setSliderState(([prevIndex]) => [
+      (prevIndex + 1) % projectDetail.images!.length,
+      1
+    ]);
   };
 
   const prevImage = (e: MouseEvent) => {
     e.stopPropagation();
-    if (!projectDetail?.images) return;
-    setDirection(-1);
-    setCurrentImgIndex((prev) => (prev - 1 + projectDetail.images!.length) % projectDetail.images!.length);
+    if (!projectDetail?.images || isAnimating) return;
+    setSliderState(([prevIndex]) => [
+      (prevIndex - 1 + projectDetail.images!.length) % projectDetail.images!.length,
+      -1
+    ]);
   };
 
   const handleDotClick = (index: number, e: MouseEvent) => {
     e.stopPropagation();
-    setDirection(index > currentImgIndex ? 1 : -1);
-    setCurrentImgIndex(index);
+    if (index === currentImgIndex || isAnimating) return;
+    setSliderState([index, index > currentImgIndex ? 1 : -1]);
   }
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
+      x: direction === 0 ? 0 : direction > 0 ? 100 : -100,
       opacity: 0
     }),
     center: {
@@ -93,7 +97,7 @@ const ProjectModalContent = () => {
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 100 : -100,
+      x: direction === 0 ? 0 : direction < 0 ? 100 : -100,
       opacity: 0
     })
   };
@@ -116,8 +120,7 @@ const ProjectModalContent = () => {
       default:
         break;
     }
-    setCurrentImgIndex(0);
-    setDirection(0);
+    setSliderState([0, 0]);
   }, [currentProject])
 
   return (
@@ -320,35 +323,40 @@ const ProjectModalContent = () => {
                   <Divider />
                   <ModalSection label={projectDetail.imageLabel || "주요 서비스 UI"}>
                     <div className="w-full flex flex-col items-center gap-4 pt-2">
-                      <div className="relative w-full aspect-[45/32] flex items-center justify-center group overflow-hidden">
-                        <AnimatePresence mode="popLayout" custom={direction}>
-                          <motion.div
-                            key={currentImgIndex}
-                            custom={direction}
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="w-full overflow-hidden cursor-pointer rounded-xl"
-                            transition={{
-                              x: { type: "spring", stiffness: 300, damping: 30 },
-                              opacity: { duration: 0.3 }
-                            }}
-                            onClick={() => setSelectedImage(projectDetail.images![currentImgIndex])}
-                          >
-                            <img
-                              src={projectDetail.images[currentImgIndex]}
-                              alt={`project-${currentImgIndex}`}
-                              className="w-full h-auto block"
-                            />
-                          </motion.div>
-                        </AnimatePresence>
-
+                      <div className={`relative w-full aspect-[45/32] flex`}>
+                        <div className="relative w-full aspect-[45/32] flex items-center justify-center group overflow-hidden rounded-xl">
+                          <AnimatePresence mode="popLayout" custom={direction}>
+                            <motion.div
+                              key={currentImgIndex}
+                              custom={direction}
+                              variants={variants}
+                              initial="enter"
+                              animate="center"
+                              exit="exit"
+                              onAnimationStart={() => setIsAnimating(true)}
+                              onAnimationComplete={() => setIsAnimating(false)}
+                              className="w-full overflow-hidden cursor-pointer rounded-xl"
+                              transition={{
+                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                opacity: { duration: 0.3 }
+                              }}
+                              onClick={() => {
+                                setSelectedImage(projectDetail.images![currentImgIndex]);
+                                setSliderState([currentImgIndex, 0]);
+                              }}
+                            >
+                              <img
+                                src={projectDetail.images[currentImgIndex]}
+                                alt={`project-${currentImgIndex}`}
+                                className="w-full h-auto block"
+                              />
+                            </motion.div>
+                          </AnimatePresence>
+                        </div>
                         {projectDetail.images.length > 1 && (
                           <SliderNavButtons onPrev={prevImage} onNext={nextImage} />
                         )}
                       </div>
-
                       <SliderDots
                         items={projectDetail.images}
                         currentIndex={currentImgIndex}
@@ -374,6 +382,7 @@ const ProjectModalContent = () => {
         onNext={nextImage}
         onDotClick={handleDotClick}
         variants={variants}
+        setIsAnimating={setIsAnimating}
       />
     </motion.div>
   );

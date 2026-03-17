@@ -13,6 +13,7 @@ type Props = {
   onNext: (e: MouseEvent) => void;
   onDotClick: (index: number, e: MouseEvent) => void;
   variants: Variants;
+  setIsAnimating: (isAnimating: boolean) => void;
 };
 
 const ImageLightbox = ({
@@ -25,12 +26,13 @@ const ImageLightbox = ({
   onNext,
   onDotClick,
   variants,
+  setIsAnimating,
 }: Props) => {
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#000000f5] flex items-center justify-center cursor-default"
+          className="fixed inset-0 z-[10000] bg-[#000000bb] flex items-center justify-center cursor-default"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -54,6 +56,8 @@ const ImageLightbox = ({
                 initial="enter"
                 animate="center"
                 exit="exit"
+                onAnimationStart={() => setIsAnimating(true)}
+                onAnimationComplete={() => setIsAnimating(false)}
                 src={images[currentIndex]}
                 alt="Enlarged project"
                 className="relative z-10 max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-2xl"
