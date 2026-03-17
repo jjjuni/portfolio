@@ -143,7 +143,7 @@ export const COLBRUSH_DETAIL: ProjectDetail = {
         }
       ]
     },
-  ]
+  ],
 }
 
 export const TRAVLOOM_DETAIL: ProjectDetail = {
@@ -258,6 +258,13 @@ export const TRAVLOOM_DETAIL: ProjectDetail = {
         }
       ]
     },
+  ],
+  images: [
+    "/projects/travloom/travloom1_home.png",
+    "/projects/travloom/travloom2_plan.png",
+    "/projects/travloom/travloom3_map.png",
+    "/projects/travloom/travloom4_mypage.png",
+    "/projects/travloom/travloom5_calendar.png",
   ]
 }
 
@@ -358,6 +365,13 @@ export const PHARMQUEST_DETAIL: ProjectDetail = {
         }
       ]
     },
+  ],
+  imageLabel: "주요 구현 UI",
+  images: [
+    "/projects/pharmquest/pharmquest1_community.png",
+    "/projects/pharmquest/pharmquest2_create.png",
+    "/projects/pharmquest/pharmquest3_post.png",
+    "/projects/pharmquest/pharmquest4_activity.png",
   ]
 }
 
@@ -484,5 +498,13 @@ export const EMOTREE_DETAIL: ProjectDetail = {
         }
       ]
     },
+  ],
+  images: [
+    "/projects/emotree/emotree1_home.png",
+    "/projects/emotree/emotree2_quiz.png",
+    "/projects/emotree/emotree3_empathy.png",
+    "/projects/emotree/emotree4_voice.png",
+    "/projects/emotree/emotree5_expression.png",
+    "/projects/emotree/emotree6_growth.png",
   ]
 }

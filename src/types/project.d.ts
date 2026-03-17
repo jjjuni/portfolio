@@ -76,4 +76,7 @@ type ProjectDetail = {
   contribution: ContributionItem[];
 
   troubleShooting: TroubleShootingItem[];
+
+  imageLabel?: string;
+  images?: string[];
 };

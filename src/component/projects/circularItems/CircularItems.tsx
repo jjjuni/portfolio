@@ -1,4 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useRef } from "react";
+import useModalStore from "../../../stores/useModalStore";
 
 type Props = {
   items?: ProjectType[];
@@ -44,6 +45,7 @@ export default function CircularItems({
   arcRotateDeg = 20,
   centerScale = 1,
 }: Props) {
+  const { isModalOpen } = useModalStore();
   const baseItems = useMemo<ProjectType[]>(() => {
     if (items?.length) return items;
     return Array.from({ length: 8 }).map((_, i) => ({
@@ -92,18 +94,24 @@ export default function CircularItems({
     if (!el) return;
 
     const onWheel = (e: WheelEvent) => {
+      if (isModalOpen) return;
       if (!e.shiftKey) return;
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       scrollRef.current.target += (delta > 0 ? scrollSpeed : -scrollSpeed) * 18;
     };
 
     const onDown = (e: MouseEvent | TouchEvent) => {
+      if (isModalOpen) return;
       scrollRef.current.isDown = true;
       scrollRef.current.startTarget = scrollRef.current.target;
       scrollRef.current.startX = "touches" in e ? e.touches[0].clientX : e.clientX;
     };
 
     const onMove = (e: MouseEvent | TouchEvent) => {
+      if (isModalOpen) {
+        scrollRef.current.isDown = false;
+        return;
+      }
       if (!scrollRef.current.isDown) return;
       const x = "touches" in e ? e.touches[0].clientX : e.clientX;
       const dx = scrollRef.current.startX - x;
@@ -133,7 +141,7 @@ export default function CircularItems({
       window.removeEventListener("touchmove", onMove);
       window.removeEventListener("touchend", onUp);
     };
-  }, [scrollSpeed]);
+  }, [scrollSpeed, isModalOpen]);
 
   useEffect(() => {
     let raf = 0;
