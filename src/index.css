@@ -61,6 +61,15 @@
   src: url("/fonts/SpaceMono-bold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Krona one";
+  font-weight: 45 920;
+  line-height: 100%;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/KronaOne-Regular.ttf") format("truetype");
+}
+
 @layer components {
   .center-absolute {
     position: absolute;
@@ -102,6 +111,7 @@
   --font-gmarket: 'Gmarket sans';
   --font-abel: 'Abel';
   --font-space-mono: 'Space mono';
+  --font-krona: 'Krona one';
 }
 
 
