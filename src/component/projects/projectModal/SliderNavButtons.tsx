@@ -1,4 +1,5 @@
 import { type MouseEvent } from "react";
+import { useDeviceStore } from "../../../stores/useDeviceStore";
 
 type Props = {
   onPrev: (e: MouseEvent) => void;
@@ -7,6 +8,11 @@ type Props = {
 };
 
 const SliderNavButtons = ({ onPrev, onNext, variant = "slider" }: Props) => {
+
+  const {
+    isTouchDevice,
+  } = useDeviceStore();
+
   const isLightbox = variant === "lightbox";
   const buttonClass = `absolute z-10 h-full flex items-center ${isLightbox ? `from-black/60` : `from-[#232323ee]`}  to-transparent opacity-0 hover:opacity-100 transition-300 text-white cursor-pointer select-none`
 
@@ -21,9 +27,10 @@ const SliderNavButtons = ({ onPrev, onNext, variant = "slider" }: Props) => {
   };
 
   return (
+    !isTouchDevice &&
     <>
       <button
-        className={`left-0 bg-gradient-to-r justify-start ${isLightbox ? "w-1/5 pl-8" : "w-1/6 pl-4"
+        className={`left-0 bg-gradient-to-r justify-start ${isLightbox ? "pl-8" : "pl-4"
           } ${buttonClass}`}
         onClick={handlePrev}
       >
@@ -42,7 +49,7 @@ const SliderNavButtons = ({ onPrev, onNext, variant = "slider" }: Props) => {
         </svg>
       </button>
       <button
-        className={`right-0 bg-gradient-to-l justify-end ${isLightbox ? "w-1/5 pr-8" : "w-1/6 pr-4"
+        className={`right-0 bg-gradient-to-l justify-end ${isLightbox ? "pr-8" : "pr-4"
           } ${buttonClass}`}
         onClick={handleNext}
       >

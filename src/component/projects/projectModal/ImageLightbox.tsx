@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo, type Variants } from "framer-motion";
 import SliderNavButtons from "./SliderNavButtons";
 import SliderDots from "./SliderDots";
 import { type MouseEvent } from "react";
@@ -13,7 +13,8 @@ type Props = {
   onNext: (e: MouseEvent) => void;
   onDotClick: (index: number, e: MouseEvent) => void;
   variants: Variants;
-  setIsAnimating: (isAnimating: boolean) => void;
+  isTouchDevice: boolean;
+  onDragEnd: (_: TouchEvent, info: PanInfo) => void;
 };
 
 const ImageLightbox = ({
@@ -26,7 +27,8 @@ const ImageLightbox = ({
   onNext,
   onDotClick,
   variants,
-  setIsAnimating,
+  isTouchDevice,
+  onDragEnd,
 }: Props) => {
   return (
     <AnimatePresence>
@@ -56,16 +58,19 @@ const ImageLightbox = ({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                onAnimationStart={() => setIsAnimating(true)}
-                onAnimationComplete={() => setIsAnimating(false)}
                 src={images[currentIndex]}
                 alt="Enlarged project"
-                className="relative z-10 max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                className="relative z-10 max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-2xl touch-pan-y"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 },
                 }}
+                drag={isTouchDevice ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={onDragEnd}
                 onClick={(e) => e.stopPropagation()}
+                draggable={false}
               />
             </AnimatePresence>
 
