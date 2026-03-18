@@ -3,7 +3,7 @@ import useModalStore from "../../../stores/useModalStore"
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import useLenisScroll from "../../../hooks/useLenisScroll";
 import Portal from "../../portal/Portal";
-import { COLBRUSH_DETAIL, EMOTREE_DETAIL, PHARMQUEST_DETAIL, TRAVLOOM_DETAIL } from "../../../constants/Projects";
+import { COLBRUSH_DETAIL, EMOTREE_DETAIL, ONIER_DETAIL, PHARMQUEST_DETAIL, PORTFOLIO_DETAIL, TRAVLOOM_DETAIL } from "../../../constants/Projects";
 import Part from "../part/Part";
 import Divider from "./Divider";
 import ModalSection from "./ModalSection";
@@ -69,6 +69,12 @@ const ProjectModalContent = () => {
         break;
       case "EMOTree":
         setProjectDetail(EMOTREE_DETAIL);
+        break;
+      case "ONIER":
+        setProjectDetail(ONIER_DETAIL);
+        break;
+      case "Portfolio":
+        setProjectDetail(PORTFOLIO_DETAIL);
         break;
 
       default:

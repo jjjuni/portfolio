@@ -1,4 +1,4 @@
-import { ChromaIcon, ColbrushIcon, EmotreeIcon, FastapiIcon, FigmaIcon, FirebaseIcon, GithubIcon, KIISIcon, MysqlIcon, NextjsIcon, NpmIcon, OpenAIIcon, OpensourceIcon, ReactIcon, SKUnivIcon, SpringIcon, TailwindIcon, YoutubeIcon } from "../assets/svgs";
+import { ChromaIcon, ColbrushIcon, EmotreeIcon, ExtensionIcon, FastapiIcon, FigmaIcon, FirebaseIcon, GithubIcon, KIISIcon, MysqlIcon, NextjsIcon, NpmIcon, OpenAIIcon, OpensourceIcon, ReactIcon, SKUnivIcon, SpringIcon, TailwindIcon, YoutubeIcon } from "../assets/svgs";
 import BoldSpan from "../component/common/BoldSpan";
 import ProjectLogo from "../component/common/ProjectLogo";
 
@@ -7,7 +7,7 @@ export const PROJECTS = [
     id: 1,
     title: "어디약",
     desc: "해외 상비약 정보 및 약국 위치 제공 서비스",
-    image: "/projects/Pharmquest.png",
+    image: "/projects/pharmquest/Pharmquest.png",
     parts: ["FE"],
     skills: [ReactIcon, NextjsIcon, TailwindIcon]
   },
@@ -15,7 +15,7 @@ export const PROJECTS = [
     id: 2,
     title: "떠나,봄",
     desc: "나만의 AI 스마트 여행플래너",
-    image: "/projects/Travloom.png",
+    image: "/projects/travloom/Travloom.png",
     parts: ["PM", "Design", "FE", "BE"],
     skills: [FigmaIcon, ReactIcon, NextjsIcon, TailwindIcon, SpringIcon, FirebaseIcon, MysqlIcon]
   },
@@ -23,7 +23,7 @@ export const PROJECTS = [
     id: 3,
     title: "Colbrush",
     desc: "색각이상자를 위한 UI 테마 자동화 라이브러리",
-    image: "/projects/Colbrush.png",
+    image: "/projects/colbrush/Colbrush.png",
     parts: ["Library Development"],
     skills: [ReactIcon, TailwindIcon, NpmIcon]
   },
@@ -31,15 +31,31 @@ export const PROJECTS = [
     id: 4,
     title: "EMOTree",
     desc: "알렉시티미아를 위한 감정 훈련 플랫폼",
-    image: "/projects/EMOTree.png",
+    image: "/projects/emotree/EMOTree.png",
     parts: ["PM", "Design", "FE", "BE"],
     skills: [FigmaIcon, ReactIcon, TailwindIcon, MysqlIcon, FastapiIcon, ChromaIcon, OpenAIIcon]
+  },
+  {
+    id: 5,
+    title: "ONIER",
+    desc: "시각장애인 검색 효율을 높히는 AI 확장프로그램",
+    image: "/projects/onier/ONIER.png",
+    parts: ["FE"],
+    skills: [ReactIcon, TailwindIcon, ExtensionIcon]
+  },
+  {
+    id: 6,
+    title: "Portfolio",
+    desc: "포트폴리오 사이트",
+    image: "/projects/portfolio/Portfolio.png",
+    parts: ["Design", "FE"],
+    skills: [FigmaIcon, ReactIcon, TailwindIcon]
   }
 ]
 
 export const COLBRUSH_DETAIL: ProjectDetail = {
   title: "Colbrush",
-  background: "/projects/Colbrush.png",
+  background: "/projects/colbrush/Colbrush.png",
   logo: <ProjectLogo title={"colbrush"} className={`font-racing bg-gradient-to-r from-[#ffffff] to-[#666666] bg-clip-text text-transparent px-1`} />,
   desc: "색각이상자를 위한 UI 테마 자동화 라이브러리",
   skills: [
@@ -148,7 +164,7 @@ export const COLBRUSH_DETAIL: ProjectDetail = {
 
 export const TRAVLOOM_DETAIL: ProjectDetail = {
   title: "떠나,봄",
-  background: "/projects/Travloom.png",
+  background: "/projects/travloom/Travloom.png",
   logo: <ProjectLogo title={"떠나,봄"} className={`font-gmarket`} />,
   desc: "나만의 스마트 여행플래너",
   skills: [
@@ -270,7 +286,7 @@ export const TRAVLOOM_DETAIL: ProjectDetail = {
 
 export const PHARMQUEST_DETAIL: ProjectDetail = {
   title: "어디약",
-  background: "/projects/Pharmquest.png",
+  background: "/projects/pharmquest/Pharmquest.png",
   logo: <ProjectLogo title={"어디약"} className={`font-paperlogy`} />,
   desc: "해외 상비약 정보 및 약국 위치 제공 서비스",
   skills: [
@@ -377,7 +393,7 @@ export const PHARMQUEST_DETAIL: ProjectDetail = {
 
 export const EMOTREE_DETAIL: ProjectDetail = {
   title: "EMOTree",
-  background: "/projects/EMOTree.png",
+  background: "/projects/emotree/EMOTree.png",
   logo: <ProjectLogo title={"EMOTree"} className={`font-abel`} />,
   desc: "알렉시티미아를 위한 감정 훈련 플랫폼",
   skills: [
@@ -507,4 +523,167 @@ export const EMOTREE_DETAIL: ProjectDetail = {
     "/projects/emotree/emotree5_expression.png",
     "/projects/emotree/emotree6_growth.png",
   ]
+}
+
+export const ONIER_DETAIL: ProjectDetail = {
+  title: "ONIER",
+  background: "/projects/onier/ONIER.png",
+  logo: <ProjectLogo title={"ONIER"} className={`font-krona`} />,
+  desc: "시각장애인 검색 효율을 높히는 AI 확장프로그램",
+  skills: [
+    ReactIcon,
+    TailwindIcon,
+    ExtensionIcon,
+  ],
+  links: [
+    {
+      icon: GithubIcon,
+      link: "https://github.com/D2S4-ONier",
+    },
+  ],
+  period: "2025.09.12 ~ 2025.09.14",
+  team: "Design 2명, FE 1명, BE 1명",
+  parts: ["PM", "FE"],
+  overview: [
+    <p>많은 웹 서비스가 시각 중심으로 설계되어, 시각장애인은 정보를 효율적으로 탐색하기 어렵습니다. 또한 기존 도구만으로는 <BoldSpan>검색 및 정보 탐색에 상당한 시간이 소요</BoldSpan>된다는 문제점을 파악했습니다.</p>,
+    <p>이를 해결하기 위해 시각장애인을 위한 <BoldSpan>검색 효율 향상</BoldSpan> 기능을 제공하고, 브라우저 확장 프로그램 형태로 쉽게 사용할 수 있는 ONIER를 기획하게 되었습니다.</p>
+  ],
+  award: [
+    {
+      icon: SKUnivIcon,
+      title: "서경대 X 멋쟁이 사자처럼 해커톤",
+      result: "최우수상 수상",
+    },
+  ],
+  feature: {
+    desc: <p>ONIER는 음성을 통한 현재 페이지 요약 및 페이지 내 검색을 제공합니다.</p>,
+    details: [
+      {
+        type: "descs",
+        label: "페이지 요약",
+        descs: [
+          <p>현재 페이지 내 정보를 요약하여 TTS를 통해 정보 제공</p>,
+        ]
+      },
+      {
+        type: "descs",
+        label: "페이지 내 검색",
+        descs: [
+          <p>현재 페이지 내용 기반 질문 시 정보 탐색 후 TTS를 통해 정보 제공</p>,
+        ]
+      },
+    ]
+  },
+  contribution: [
+    {
+      label: "기획 및 방향성 수립",
+      desc: [
+        "시각 장애인을 위한 웹 접근성 강화에 초점을 맞춰 서비스 기획과 설계 과정에 참여했습니다.",
+        "검색 효율을 극대화하는 서비스의 특성을 고려하여, 기존 웹 개발 경험을 넘어 브라우저 확장 프로그램 형태로 방향을 설정하고 설계 및 구현에 참여했습니다.",
+      ]
+    }, 
+    {
+      label: "사용자 특성을 고려한 설계",
+      desc: [
+        "인터페이스 전반의 안내와 피드백을 음성으로 제공하도록 설계하여 접근성을 강화했습니다.",
+        "모든 기능은 키보드 단축키로 접근 가능하도록 설계하여 시각장애 사용자도 효율적으로 사용할 수 있도록 구현했습니다.",
+      ]
+    },
+  ],
+  troubleShooting: [
+    {
+      label: "단발성 질의 처리 문제",
+      desc: [
+        {
+          trouble: "기존 구조에서는 음성 기반 검색이 단발성 요청으로 처리되어 사용자가 이전 질문을 기반으로 추가 질문을 이어가는 대화형 인터렉션이 불가능하다는 문제가 발생하였습니다.",
+          solution: "세션 기반 상태 관리 구조를 도입하여 대화 맥락을 유지하도록 개선하여 단발성 검색에서 대화형 AI 검색 경험으로 확장하였습니다."
+        }
+      ]
+    },
+  ],
+  images: [
+    "/projects/onier/onier1_init.png",
+    "/projects/onier/onier2_home.png",
+    "/projects/onier/onier3_summary.png",
+    "/projects/onier/onier4_voice.png",
+    "/projects/onier/onier5_result.png",
+  ]
+}
+
+export const PORTFOLIO_DETAIL: ProjectDetail = {
+  title: "Portfolio",
+  background: "/projects/portfolio/Portfolio.png",
+  logo: <ProjectLogo title={"Portfolio"} className={`font-pretendard font-extrabold`} />,
+  desc: "포트폴리오 사이트",
+  skills: [
+    FigmaIcon,
+    ReactIcon,
+    TailwindIcon,
+  ],
+  links: [
+    {
+      icon: GithubIcon,
+      link: "https://github.com/jjjuni/portfolio",
+    },
+  ],
+  period: "2026.02 ~ 2026.03",
+  team: "개인 프로젝트",
+  parts: ["Design", "FE"],
+  overview: [
+    <p>다양한 인터렉션 구현을 위해 도입해보고 싶었던 기술을 기반으로 시작된 포트폴리오 프로젝트입니다. 기술 실험을 넘어 사용자 흐름에 자연스럽게 녹아드는 경험을 설계하며 몰입도 높은 UI 구현에 집중했습니다. 또한, 기술 도입 과정에서 발생하는 문제를 해결하며, 안정성과 완성도를 함께 고려했습니다.</p>
+  ],
+  feature: {
+    desc: <p>소개 - 기술 스택 - 프로젝트 순으로 구성하여 개발자로써의 방향성과 기술 역량, 그리고 실제 경험을 단계적으로 확인할 수 있습니다.</p>,
+    details: [
+      {
+        type: "descs",
+        label: "소개",
+        descs: [
+          <p>간단한 소개와 개발자로서의 다양한 경험을 확인할 수 있습니다.</p>,
+        ]
+      },
+      {
+        type: "descs",
+        label: "기술 스택",
+        descs: [
+          <p>다양한 경험을 통해 쌓아온 개발 역량들을 확인할 수 있습니다.</p>,
+        ]
+      },
+      {
+        type: "descs",
+        label: "프로젝트",
+        descs: [
+          <p>지금까지 참여한 주요 프로젝트들을 확인할 수 있습니다.</p>,
+        ]
+      },
+    ]
+  },
+  contribution: [
+    {
+      label: "디자인",
+      desc: [
+        "다양한 포트폴리오를 참고하여, 이를 바탕으로 고유한 디자인 아이덴티티를 구축했습니다.",
+      ]
+    }, 
+    {
+      label: "UI/UX 및 기능 구현",
+      desc: [
+        "다양한 스크롤 이벤트를 통한 인터렉션을 설계하여, 사용자 경험의 몰입도를 향상시켰습니다.",
+        "애니메이션 로직을 중앙에서 관리(Timeline 생성 및 트리거 설정)하여 코드의 파편화를 막고, 성능 최적화를 위해 복잡한 타임라인을 효율적으로 구조화했습니다.",
+        "리사이즈 로직과 전역 상태 관리를 통해 기기 환경에 구애받지 않는 안정적인 인터페이스를 완성했습니다.",
+        "데이터 기반의 선언적 컴포넌트 설계를 통해, 복잡한 프로젝트 정보를 유지보수가 용이한 구조로 모듈화했습니다.",
+      ]
+    },
+  ],
+  troubleShooting: [
+    {
+      label: "다중 Lenis 인스턴스 간의 이벤트 간섭 문제",
+      desc: [
+        {
+          trouble: "메인 페이지와 모달창 각각에서 Lenis 인스턴스를 개별 생성 시, 스크롤 이벤트가 중첩되어 원치 않는 영역이 스크롤되는 문제가 발생하였습니다.",
+          solution: "커스텀 훅을 구현하여 인스턴스 생명주기를 통합관리하고, 모달 오픈 시 메인 스크롤 인스턴스를 정지시키고 모달 내부 인스턴스만 활성화하도록 구현하였습니다."
+        }
+      ]
+    },
+  ],
 }
