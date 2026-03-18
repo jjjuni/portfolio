@@ -23,18 +23,22 @@ export default function Skills() {
   })
 
   return (
-    <section id="Skills" className={`w-full h-[100dvh] flex flex-col items-center justify-center pt-[80px] pb-[40px] gap-10 z-10`}>
-      {currentToggle === "SKILLS" && (  // 현재 토글이 SKILLS일 때만 렌더링 -> GSAP 애니메이션과 상태 관리를 최적화
-        <>
-          <p className={`font-bold max-md:text-[24px] text-[32px]`}>SKILLS</p>
-          <div className={`flex flex-col gap-10 w-[80%] overflow-hidden`}>
-            <SkillList title="FRONTEND" skillList={FRONTEND_SKILLS} />
-            <SkillList title="BACKEND" skillList={BACKEND_SKILLS} />
-            <SkillList title="INFRA & TOOLS" skillList={INFRA_SKILLS} />
-          </div>
-        </>
-      )}
-
+    <section id="Skills" className={`w-full h-[100dvh] flex flex-col items-center justify-center pt-[80px] pb-[40px] z-10`}>
+      <AnimatePresence>
+        {currentToggle === "SKILLS" && (  // 현재 토글이 SKILLS일 때만 렌더링 -> 애니메이션과 상태 관리를 최적화
+          <motion.div
+            className={`w-full flex flex-col items-center justify-center gap-10`}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}>
+            <p className={`font-bold max-md:text-[24px] text-[32px]`}>SKILLS</p>
+            <div className={`flex flex-col gap-10 w-[80%] overflow-hidden`}>
+              <SkillList title="FRONTEND" skillList={FRONTEND_SKILLS} />
+              <SkillList title="BACKEND" skillList={BACKEND_SKILLS} />
+              <SkillList title="INFRA & TOOLS" skillList={INFRA_SKILLS} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
