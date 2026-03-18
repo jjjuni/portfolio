@@ -281,7 +281,7 @@ const ProjectModalContent = () => {
                 <>
                   <Divider />
                   <ModalSection label={projectDetail.imageLabel || "주요 서비스 UI"}>
-                    <ImageSlider images={projectDetail.images} imageLabel={projectDetail.imageLabel} />
+                    <ImageSlider images={projectDetail.images} />
                   </ModalSection>
                 </>
               )}

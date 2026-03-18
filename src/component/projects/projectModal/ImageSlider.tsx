@@ -7,10 +7,9 @@ import { useDeviceStore } from "../../../stores/useDeviceStore";
 
 interface ImageSliderProps {
   images: string[];
-  imageLabel?: string;
 }
 
-const ImageSlider = ({ images, imageLabel }: ImageSliderProps) => {
+const ImageSlider = ({ images }: ImageSliderProps) => {
 
   const {
     isTouchDevice
@@ -120,7 +119,7 @@ const ImageSlider = ({ images, imageLabel }: ImageSliderProps) => {
         currentIndex={currentImgIndex}
         onClick={handleDotClick}
       />
-      <p className="text-[12px] text-[#9C9C9C]">{imageLabel || "이미지를 클릭하면 크게 볼 수 있습니다."}</p>
+      <p className="text-[12px] text-[#9C9C9C]">이미지를 클릭하면 크게 볼 수 있습니다.</p>
 
       <ImageLightbox
         images={images}
