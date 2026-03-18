@@ -7,12 +7,12 @@ import Skills from "./component/skills/Skills";
 import useLenisScroll from "./hooks/useLenisScroll";
 import Closing from "./component/closing/Closing";
 import useModalStore from "./stores/useModalStore";
-import { useSizeStore } from "./stores/useSizeStore";
+import { useDeviceStore } from "./stores/useDeviceStore";
 
 function App() {
 
   const { isModalOpen } = useModalStore();
-  const { setSize } = useSizeStore();
+  const { setSize, setIsTouchDevice } = useDeviceStore();
 
   const { stop, start, lenisRef } = useLenisScroll();
 
@@ -52,11 +52,20 @@ function App() {
       setSize(window.innerWidth, window.innerHeight);
     };
 
-    update();
-    window.addEventListener("resize", update);
+    const checkTouch = () => {
+      setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+    };
 
-    return () => window.removeEventListener("resize", update);
-  }, [setSize]);
+    update();
+    checkTouch();
+    window.addEventListener("resize", update);
+    window.addEventListener('resize', checkTouch);
+
+    return () => {
+      window.removeEventListener("resize", update);
+      window.removeEventListener('resize', checkTouch);
+    }
+  }, [setSize, setIsTouchDevice]);
 
   return (
     <>

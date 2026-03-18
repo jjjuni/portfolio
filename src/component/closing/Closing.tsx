@@ -2,11 +2,11 @@ import { useMemo } from "react";
 import { closeHeaderConfig, closingTriggerConfig } from "../../utils/gsap/triggerConfig";
 import { closeHeaderTimeline, closingTimeline } from "../../utils/gsap/timeLine";
 import { useScrollSectionList } from "../../hooks/useScrollSection";
-import { useSizeStore } from "../../stores/useSizeStore";
+import { useDeviceStore } from "../../stores/useDeviceStore";
 
 export default function Closing() {
 
-  const { isMobile } = useSizeStore();
+  const { isMobile } = useDeviceStore();
 
   const scrollTimeline = useMemo(() => [
     {
@@ -29,7 +29,7 @@ export default function Closing() {
       <div id="Closing-comment" className={`w-full h-full flex flex-col items-center justify-center pb-10`}>
         <p className={`text-black opacity-60 font-extrabold max-sm:text-[60px] max-md:text-[100px] text-[120px] leading-none`}>Thank You</p>
         <div className={`text-black z-1 text-center text-12-14-16`}>
-          <p>단순히 화면을 구현하는 것보다,{ isMobile && <br/>}보이지 않는 경험까지 고민하는 프론트엔드 개발자이고 싶습니다.</p>
+          <p>단순히 화면을 구현하는 것보다,{ isMobile && <br/>} 보이지 않는 경험까지 고민하는 프론트엔드 개발자이고 싶습니다.</p>
           <p>보다 더 나은 <span className={`font-bold`}>프론트엔드 개발자</span>로 성장해 가겠습니다.</p>
         </div>
       </div>

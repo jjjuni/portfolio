@@ -9,7 +9,7 @@ import { useScrollSection } from "../../hooks/useScrollSection";
 import { headerTriggerConfig } from "../../utils/gsap/triggerConfig";
 import { headerTimeline } from "../../utils/gsap/timeLine";
 import Lenis from "lenis";
-import { useSizeStore } from "../../stores/useSizeStore";
+import { useDeviceStore } from "../../stores/useDeviceStore";
 
 const toggleClass = 'w-fit h-full px-2 text-center cursor-pointer text-black opacity-60 hover:opacity-100 transition-300 max-md:text-[12px] text-[14px] content-center';
 const currentToggleClass = 'max-md:text-[16px] text-[24px] min-lg:-translate-y-0.5 !text-white';
@@ -71,7 +71,7 @@ const InitialTitle = ({
   direction
 }: InitialTitleProps) => {
 
-  const { isMobile } = useSizeStore();
+  const { isMobile } = useDeviceStore();
 
   const xPos = useMemo(() => { 
     const x = isMobile ? 100 : 200;

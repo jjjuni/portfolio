@@ -7,7 +7,7 @@ import { BACKEND_SKILLS, FRONTEND_SKILLS, INFRA_SKILLS } from "../../constants/S
 import { useScrollSection } from "../../hooks/useScrollSection";
 import { skillsTimeline } from "../../utils/gsap/timeLine";
 import { skillsTriggerConfig } from "../../utils/gsap/triggerConfig";
-import { useSizeStore } from "../../stores/useSizeStore";
+import { useDeviceStore } from "../../stores/useDeviceStore";
 
 export default function Skills() {
 
@@ -49,7 +49,7 @@ type TooltipState = {
 
 const SkillList = ({ title, skillList }: { title: string, skillList: SkillType[] }) => {
 
-  const { isMobile } = useSizeStore();
+  const { isMobile } = useDeviceStore();
 
   const [tooltip, setTooltip] = useState<TooltipState>({
     visible: false,
