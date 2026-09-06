@@ -34,11 +34,10 @@ export default function WindowTitleBar({
       className="
               flex h-9
               items-center gap-2
-              border-b border-border rounded-t-xl
+             border-b border-border rounded-t-xl
               px-3
               sticky
               top-0
-              z-10
               cursor-grabbing
             "
       onPointerDown={(e) => dragControls.start(e)}

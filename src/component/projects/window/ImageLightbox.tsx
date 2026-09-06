@@ -39,7 +39,7 @@ const ImageLightbox = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[50] bg-[#000000bb] flex items-center justify-center cursor-default"
+          className="fixed inset-0 top-8 z-[50] bg-[#000000bb] flex items-center justify-center cursor-default"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
