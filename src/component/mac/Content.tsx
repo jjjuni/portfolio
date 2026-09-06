@@ -20,7 +20,7 @@ const DESKTOP_ICONS = [
   {
     title: "Skills",
     icon: (
-      <div className={`size-10`}>
+      <div className={`size-10 pointer-events-none`}>
         <div className={`text-[28px]`}>🛠️</div>
       </div>
     ),
@@ -29,7 +29,7 @@ const DESKTOP_ICONS = [
   {
     title: "Projects",
     icon: (
-      <div className={`size-10`}>
+      <div className={`size-10 pointer-events-none`}>
         <FolderDockIcon className={`size-10`} />
       </div>
     ),
@@ -84,10 +84,10 @@ export default function Content({
             rounded-md transition-colors duration-100
         `}
         >
-          <div className={`p-1.5`}>{item.icon}</div>
+          <div className={`p-1.5 cursor-pointer`}>{item.icon}</div>
           <div
             className={`
-            rounded-sm px-0.5 text-white leading-[1.2] text-[14px]
+            rounded-sm px-0.5 text-white leading-[1.2] text-[14px] pointer-events-none
           `}
           >
             {item.title}
