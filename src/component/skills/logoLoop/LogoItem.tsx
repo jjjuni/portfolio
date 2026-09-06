@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 type LogoItemProps = {
   Logo: React.ComponentType<{ className?: string }>;
   title: string;
@@ -24,20 +26,47 @@ export default function LogoItem({
 
     onHover({
       visible: true,
-      x: rect.left + rect.width / 2,
-      y: rect.bottom,
+      x: rect.left + rect.width,
+      y: rect.top - 100,
       title,
       descList,
     });
   };
 
   return (
-    <div
-      className="cursor-pointer transition-transform duration-300 hover:scale-120"
-      onMouseEnter={handleEnter}
-      onMouseLeave={onLeave}
-    >
-      <Logo/>
-    </div>
+    <>
+      <motion.div
+        key={title}
+        whileHover={{
+          scale: 1.2,
+          y: -8,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 20,
+        }}
+        className="
+          relative
+          flex h-14 w-14
+          items-center justify-center
+
+          rounded-[16px]
+          border border-black/10
+
+          bg-white/60
+          backdrop-blur-xl
+
+          shadow-[0_4px_12px_rgba(0,0,0,0.08)]
+
+          transition-colors
+          hover:bg-white/80
+        "
+        onMouseEnter={handleEnter}
+        onMouseLeave={onLeave}
+      >
+        <Logo className={`size-10`} />
+      </motion.div>
+    </>
   );
 }

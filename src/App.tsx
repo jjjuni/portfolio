@@ -1,82 +1,26 @@
-import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Header from "./component/header/Header";
-import About from "./component/about/About";
-import Projects from "./component/projects/Projects";
-import Skills from "./component/skills/Skills";
-import useLenisScroll from "./hooks/useLenisScroll";
-import Closing from "./component/closing/Closing";
-import useModalStore from "./stores/useModalStore";
-import { useDeviceStore } from "./stores/useDeviceStore";
+import { useState } from "react";
+import BootScreen from "./component/bootScreen/BootScreen";
+import Background from "./component/mac/Background";
+import Content from "./component/mac/Content";
+import ProjectWindow from "./component/projects/window/ProjectWindow";
+import Window from "./component/window/Window";
 
 function App() {
-
-  const { isModalOpen } = useModalStore();
-  const { setSize, setIsTouchDevice } = useDeviceStore();
-
-  const { stop, start, lenisRef } = useLenisScroll();
-
-  useEffect(() => {
-    history.scrollRestoration = "manual";
-    ScrollTrigger.clearScrollMemory();
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      stop();
-      document.body.style.overflow = "hidden";
-    }
-    else {
-      start();
-      document.body.style.overflow = "";
-    }
-  }, [isModalOpen])
-
-  useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const timer = setTimeout(() => {
-      document.body.style.overflow = originalOverflow || "auto";
-    }, 1500);
-
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = originalOverflow;
-    };
-  }, []);
-
-  useEffect(() => {
-    const update = () => {
-      setSize(window.innerWidth, window.innerHeight);
-    };
-
-    const checkTouch = () => {
-      setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
-    };
-
-    update();
-    checkTouch();
-    window.addEventListener("resize", update);
-    window.addEventListener('resize', checkTouch);
-
-    return () => {
-      window.removeEventListener("resize", update);
-      window.removeEventListener('resize', checkTouch);
-    }
-  }, [setSize, setIsTouchDevice]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState<string | null>(null);
 
   return (
     <>
       <div id="page" className="w-screen h-[100dvh] select-none">
-        <Header lenisRef={lenisRef} />
-        <About />
-        <Skills />
-        <Projects />
-        <Closing />
+        <BootScreen>
+          <div className={`absolute`}>
+            <Background />
+          </div>
+          <Content setTitle={setTitle} setIsOpen={setIsOpen} />
+          <Window title={title} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <ProjectWindow />
+        </BootScreen>
       </div>
-      <div id="portal-root" />
     </>
   );
 }

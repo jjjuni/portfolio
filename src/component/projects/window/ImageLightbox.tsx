@@ -1,7 +1,12 @@
-import { AnimatePresence, motion, type PanInfo, type Variants } from "framer-motion";
-import SliderNavButtons from "./SliderNavButtons";
-import SliderDots from "./SliderDots";
+import {
+  AnimatePresence,
+  motion,
+  type PanInfo,
+  type Variants,
+} from "framer-motion";
 import { type MouseEvent } from "react";
+import SliderDots from "./SliderDots";
+import SliderNavButtons from "./SliderNavButtons";
 
 type Props = {
   images: string[];
@@ -34,7 +39,7 @@ const ImageLightbox = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#000000bb] flex items-center justify-center cursor-default"
+          className="fixed inset-0 z-[50] bg-[#000000bb] flex items-center justify-center cursor-default"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -60,7 +65,7 @@ const ImageLightbox = ({
                 exit="exit"
                 src={images[currentIndex]}
                 alt="Enlarged project"
-                className="relative z-10 max-w-[90%] max-h-[85vh] object-contain rounded-lg shadow-2xl touch-pan-y"
+                className="relative z-10 max-w-[90%] max-h-[80%] object-contain rounded-lg shadow-2xl touch-pan-y"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 },
@@ -74,7 +79,11 @@ const ImageLightbox = ({
               />
             </AnimatePresence>
 
-            <SliderNavButtons onPrev={onPrev} onNext={onNext} variant="lightbox" />
+            <SliderNavButtons
+              onPrev={onPrev}
+              onNext={onNext}
+              variant="lightbox"
+            />
 
             <SliderDots
               items={images}

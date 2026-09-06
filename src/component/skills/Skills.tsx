@@ -5,43 +5,31 @@ import {
   FRONTEND_SKILLS,
   INFRA_SKILLS,
 } from "../../constants/Skills";
-import { useScrollSection } from "../../hooks/useScrollSection";
 import { useDeviceStore } from "../../stores/useDeviceStore";
-import useToggleStore from "../../stores/useToggleStore";
-import { skillsTimeline } from "../../utils/gsap/timeLine";
-import { skillsTriggerConfig } from "../../utils/gsap/triggerConfig";
 import LogoItem from "./logoLoop/LogoItem";
 import LogoLoop from "./logoLoop/LogoLoop";
 
 export default function Skills() {
-  const { currentToggle, setCurrentToggle } = useToggleStore();
-
-  useScrollSection({
-    ...skillsTriggerConfig,
-    onEnter: () => setCurrentToggle("SKILLS"),
-    buildTimeline: skillsTimeline,
-  });
-
   return (
     <section
       id="Skills"
-      className={`w-full h-[100dvh] flex flex-col items-center justify-center pt-[80px] pb-[40px] z-10`}
+      className={`w-full h-full flex flex-col items-center justify-center p-10 pb-10 z-10 overflow-auto scrollbar-custom`}
     >
       <AnimatePresence>
-        {currentToggle === "SKILLS" && ( // 현재 토글이 SKILLS일 때만 렌더링 -> 애니메이션과 상태 관리를 최적화
-          <motion.div
-            className={`w-full flex flex-col items-center justify-center gap-10`}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        <motion.div
+          className={`w-full h-full flex flex-col items-start`}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <p className={`font-bold text-32-40`}>SKILLS</p>
+          <div
+            className={`flex-1 flex flex-col justify-center gap-10 w-full overflow-hidden`}
           >
-            <p className={`font-bold max-md:text-[24px] text-[32px]`}>SKILLS</p>
-            <div className={`flex flex-col gap-10 w-[80%] overflow-hidden`}>
-              <SkillList title="FRONTEND" skillList={FRONTEND_SKILLS} />
-              <SkillList title="BACKEND" skillList={BACKEND_SKILLS} />
-              <SkillList title="INFRA & TOOLS" skillList={INFRA_SKILLS} />
-            </div>
-          </motion.div>
-        )}
+            <SkillList title="FRONTEND" skillList={FRONTEND_SKILLS} />
+            <SkillList title="BACKEND" skillList={BACKEND_SKILLS} />
+            <SkillList title="INFRA & TOOLS" skillList={INFRA_SKILLS} />
+          </div>
+        </motion.div>
       </AnimatePresence>
     </section>
   );
@@ -96,9 +84,7 @@ const SkillList = ({
   return (
     <div className={`flex flex-col gap-5`}>
       <div className={`flex flex-row gap-2.5 items-center`}>
-        <p className={`text-[#9C9C9C] max-md:text-[16px] text-[20px] shrink-0`}>
-          {title}
-        </p>
+        <p className={`text-[#9C9C9C] text-16-18 shrink-0`}>{title}</p>
         <span className={`h-[1px] w-full bg-[#9C9C9C] opacity-50`} />
       </div>
       <LogoLoop
@@ -134,15 +120,13 @@ const Tooltip = ({ x, y, title, descList }: Omit<TooltipState, "visible">) => {
         transform: "translateX(-50%)",
       }}
     >
-      <div className="bg-sidebar-bg px-3.5 py-2.5 rounded-[8px] shadow-lg whitespace-nowrap flex flex-col gap-1.5">
-        <p className="font-semibold max-md:text-[14px]">{title}</p>
+      <div className="bg-white px-3.5 py-2.5 rounded-[8px] shadow-lg whitespace-nowrap flex flex-col gap-1.5">
+        <p className="font-semibold text-14-16 text-text-primary">{title}</p>
         <div className={`flex flex-col gap-0.5`}>
           {descList.map((desc, i) => (
             <div key={i} className={`flex flex-row gap-2 items-center`}>
-              <span className={`bg-[#D4D4D4] rounded-full size-1`} />
-              <p className="max-md:text-[12px] text-sm text-[#D4D4D4]">
-                {desc}
-              </p>
+              <span className={`bg-text-muted rounded-full size-1`} />
+              <p className="text-12-14 text-text-secondary">{desc}</p>
             </div>
           ))}
         </div>

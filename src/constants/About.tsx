@@ -1,71 +1,93 @@
-import { KIISIcon, OpensourceIcon, SKUnivIcon, UMCIcon } from "../assets/svgs";
+import { DayIcon, EmailIcon, PhoneIcon, PinIcon } from "../assets/svgs";
 
-export const EXPERIENCE_LIST_copy = [
-  {
-    title: "2025 오픈소스 개발자 대회",
-    result: "동상 수상",
-    description: "색각 이상자를 위한 테마 자동화 라이브러리 Colbrush",
-    icon: OpensourceIcon,
-  },
-  {
-    title: "2025 한국 지능시스템학회 추계 학술대회",
-    result: "우수 논문상 수상",
-    description: "Colbrush: 색각 이상 사용자 접근성 강화를 위한 올인원 테마 라이브러리",
-    icon: KIISIcon,
-  },
-  {
-    title: "2025 서경대 X 멋쟁이 사자처럼 해커톤",
-    result: "최우수상 수상",
-    description: "시각 장애인 검색 경험을 높이는 AI 확장 프로그램 ONIER",
-    icon: SKUnivIcon,
-  },
-  {
-    title: "2025 SK-AI-ON LLM 프로젝트 경진대회",
-    result: "대상 수상",
-    description: "알렉시티미아를 위한 감정 트레이닝 플랫폼 EMOTree",
-    icon: SKUnivIcon,
-  },
-]
+export const PROFILE = {
+  name: "이준희",
+  overview: "보이는 화면 이전에, 보이지 않는 경험을 설계합니다.",
+  description: (
+    <p>
+      저에게 프론트엔드는 화면을 그리는 일이 아니라,
+      <br />
+      사용자의 경험과 맥락을 설계하는 일입니다.
+      <br />
+      보이지 않는 경험을 얼마나 정교하게 만들 수 있는지가
+      <br />
+      결과의 차이를 만든다고 생각합니다.
+    </p>
+  ),
+};
 
-export const EXPERIENCE_LIST = [
+export const PROFILE_DETAIL = [
   {
+    icon: DayIcon,
+    title: "Date of Birth",
+    content: "10 Feb, 2001",
+  },
+  {
+    icon: PhoneIcon,
+    title: "Phone Number",
+    content: "010-9278-3714",
+  },
+  {
+    icon: EmailIcon,
+    title: "Email",
+    content: "0210leejun@gmail.com",
+  },
+  {
+    icon: PinIcon,
+    title: "Address",
+    content: "서울특별시 성북구",
+  },
+];
+
+export const EXPERIENCES = [
+  {
+    section: "학력",
+    title: "서경대학교",
+    description: "소프트웨어학과 학사",
     date: "2020.03 ~ 2026.02",
-    icon: <SKUnivIcon className={`size-4 shrink-0`}/>,
-    desc: "서경대학교 소프트웨어학과 졸업",
   },
   {
-    date: "2024.09 ~ 2025.01",
-    icon: <UMCIcon className={`size-4 shrink-0`}/>,
-    desc: "University MakeUs Challenge 7기",
+    section: "활동",
+    title: "University MakeUs Challenge",
+    description: "7기 Web 파트원",
+    date: "2024.09 ~ 2025.02",
   },
-  {
-    date: "2025.02 ~ 2025.07",
-    icon: <SKUnivIcon className={`size-4 shrink-0`}/>,
-    desc: "서경 SW 아카데미 수료",
-  },
-]
+];
 
-export const EXPERIENCE_EX_LIST = [
+export const ACHIVEMENTS = [
   {
-    date: "2025.09",
-    icon: SKUnivIcon,
-    title: "서경대 X 멋쟁이 사자처럼 해커톤",
-    result: "최우수상 수상",
+    section: "자격증",
+    contents: [
+      {
+        title: "정보처리기사",
+        date: "2025.09",
+        award: null,
+      },
+    ],
   },
   {
-    date: "2025.12",
-    icon: SKUnivIcon,
-    title: "SK-AI-ON LLM 프로젝트 경진대회",
-    result: "대상 수상",
-  },{
-    date: "2025.12",
-    icon: OpensourceIcon,
-    title: "오픈소스 개발자 대회",
-    result: "동상 수상",
-  },{
-    date: "2026.01",
-    icon: KIISIcon,
-    title: "한국지능시스템학회 추계 학술대회",
-    result: "우수 논문상 수상",
+    section: "수상",
+    contents: [
+      {
+        title: "서경대 X 멋쟁이 사자처럼 해커톤",
+        date: "2025.09",
+        award: "최우수상",
+      },
+      {
+        title: "SK-AI-ON LLM 프로젝트 경진대회",
+        date: "2025.12",
+        award: "대상",
+      },
+      {
+        title: "오픈소스 개발자 대회",
+        date: "2025.12",
+        award: "기업 대표상",
+      },
+      {
+        title: "한국지능시스템학회 추계 학술대회",
+        date: "2026.01",
+        award: "우수 논문상",
+      },
+    ],
   },
-]
+];

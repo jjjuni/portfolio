@@ -58,7 +58,7 @@
   line-height: 100%;
   font-style: normal;
   font-display: swap;
-  src: url("/fonts/SpaceMono-bold.ttf") format("truetype");
+  src: url("/fonts/SpaceMono-Bold.ttf") format("truetype");
 }
 
 @font-face {
@@ -99,32 +99,133 @@
 
 @theme {
   --color-sidebar-bg: #232323;
-  --color-bg: #1a1a1a;
+  --color-bg: white;
 
   --color-title: #acacac;
   --color-title-hover: #ffffff;
 
-  --font-noto: 'Noto Variable';
-  --font-pretendard: 'Pretendard Variable', sans-serif;
-  --font-racing: 'Racing sans';
-  --font-paperlogy: 'Paperlogy';
-  --font-gmarket: 'Gmarket sans';
-  --font-abel: 'Abel';
-  --font-space-mono: 'Space mono';
-  --font-krona: 'Krona one';
+  --color-text-primary: #2d2d2d;
+  --color-text-secondary: #444444;
+  --color-text-muted: #888888;
+
+  --color-border: #d5d5d5;
+
+  --font-noto: "Noto Variable";
+  --font-pretendard: "Pretendard Variable", sans-serif;
+  --font-racing: "Racing sans";
+  --font-paperlogy: "Paperlogy";
+  --font-gmarket: "Gmarket sans";
+  --font-abel: "Abel";
+  --font-space-mono: "Space mono";
+  --font-krona: "Krona one";
 }
 
+@utility text-12-14 {
+  font-size: 12px;
+
+  @media (min-width: 1024px) {
+    font-size: 14px;
+  }
+}
+
+@utility text-14-16 {
+  font-size: 14px;
+
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@utility text-16-18 {
+  font-size: 16px;
+
+  @media (min-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+@utility text-18-20 {
+  font-size: 18px;
+
+  @media (min-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+@utility text-32-40 {
+  font-size: 32px;
+
+  @media (min-width: 1024px) {
+    font-size: 40px;
+  }
+}
 
 html,
 body {
   margin: 0;
   font-family: Pretendard Variable;
-  color: white;
-  background-color: #1a1a1a;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
+  color: #2d2d2d;
+  background-color: white;
+  overflow: hidden;
+}
+
+html,
+body,
+div,
+a,
+button {
+  cursor:
+    url("/cursors/default.png") 10 6,
+    auto;
+}
+
+.cursor-pointer {
+  cursor:
+    url("/cursors/handpointing.png") 10 6,
+    pointer;
+}
+
+.cursor-grabbing:active {
+  cursor:
+    url("/cursors/handgrabbing.png") 10 6,
+    grabbing;
 }
 
 .header-p {
   padding-top: 80px;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+
+  @media (min-width: 1024px) {
+    width: 14px;
+  }
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+
+  @media (min-width: 1024px) {
+    border: 3px solid transparent;
+  }
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:active {
+  background: #aaa;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+
+  @media (min-width: 1024px) {
+    border: 3px solid transparent;
+  }
 }
