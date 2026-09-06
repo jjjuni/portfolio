@@ -29,12 +29,12 @@ import ProjectLogo from "../component/common/ProjectLogo";
 export const PROJECTS = [
   {
     id: 1,
-    title: "어디약",
-    desc: "해외 상비약 정보 및 약국 위치 제공 서비스",
-    icon: PharmquestIcon,
-    image: "/projects/pharmquest/Pharmquest.png",
-    parts: ["FE"],
-    skills: [ReactIcon, NextjsIcon, TailwindIcon],
+    title: "Colbrush",
+    desc: "색각이상자를 위한 UI 테마 자동화 라이브러리",
+    icon: ColbrushIcon,
+    image: "/projects/colbrush/Colbrush.png",
+    parts: ["Library Development"],
+    skills: [ReactIcon, TailwindIcon, NpmIcon],
   },
   {
     id: 2,
@@ -55,15 +55,6 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: "Colbrush",
-    desc: "색각이상자를 위한 UI 테마 자동화 라이브러리",
-    icon: ColbrushIcon,
-    image: "/projects/colbrush/Colbrush.png",
-    parts: ["Library Development"],
-    skills: [ReactIcon, TailwindIcon, NpmIcon],
-  },
-  {
-    id: 4,
     title: "EMOTree",
     desc: "알렉시티미아를 위한 감정 훈련 플랫폼",
     icon: EmotreeIcon,
@@ -80,13 +71,22 @@ export const PROJECTS = [
     ],
   },
   {
-    id: 5,
+    id: 4,
     title: "ONIER",
     desc: "시각장애인 검색 효율을 높히는 AI 확장프로그램",
     icon: OnierIcon,
     image: "/projects/onier/ONIER.png",
     parts: ["PM", "FE"],
     skills: [ReactIcon, TailwindIcon, ExtensionIcon],
+  },
+  {
+    id: 5,
+    title: "어디약",
+    desc: "해외 상비약 정보 및 약국 위치 제공 서비스",
+    icon: PharmquestIcon,
+    image: "/projects/pharmquest/Pharmquest.png",
+    parts: ["FE"],
+    skills: [ReactIcon, NextjsIcon, TailwindIcon],
   },
   {
     id: 6,
@@ -552,14 +552,13 @@ export const EMOTREE_DETAIL: ProjectDetail = {
     <p>
       <BoldSpan>알렉시티미아</BoldSpan>는 전체 인구에서 적지 않은 비율로
       나타나며, 최근 들어 그 비율이 증가하고 있습니다. 그러나 현대 사회에서
-      감정을 인지하고 표현하는 것이 당연시 여겨져,{" "}
-      <BoldSpan>이를 지원하는 서비스는 존재하지 않는다</BoldSpan>는 문제점을
-      파악했습니다.
+      감정을 인지하고 표현하는 것이 당연시 여겨져, 이를 지원하는 서비스는
+      존재하지 않는다는 문제점을 파악했습니다.
     </p>,
     <p>
-      이를 해결하기 위해 감정 인지, 공감, 표현 훈련을 제공하고, 개인 훈련 결과
-      기반의 월간 AI 레포트와 성장 기록 확인 기능을 제공하는 EMOTree 서비스를
-      기획하게 되었습니다.
+      이를 해결하기 위해 <BoldSpan>감정 인지, 공감, 표현 훈련</BoldSpan>을 제공
+      하고, 개인 훈련 결과 기반의 월간 AI 레포트와 성장 기록 확인 기능을
+      제공하는 EMOTree 서비스를 기획하게 되었습니다.
     </p>,
   ],
   award: [
