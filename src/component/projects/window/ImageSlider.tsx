@@ -89,7 +89,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
             {images.map((img, i) => (
               <div
                 key={i}
-                className="w-[80%] h-full shrink-0 flex items-center justify-center overflow-hidden rounded-xl touch-pan-y"
+                className="w-[80%] aspect-4/3 shrink-0 flex items-center justify-center overflow-hidden rounded-xl touch-pan-y"
                 onClick={() => {
                   if (i === currentImgIndex) {
                     setSelectedImage(images[currentImgIndex]);
@@ -102,7 +102,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
                 <img
                   src={img}
                   alt={`project-${i}`}
-                  className={`w-full h-auto block transition-300 ${i === currentImgIndex ? "opacity-100" : "opacity-40"}`}
+                  className={`w-full aspect-4/3 object-contain block transition-300 ${i === currentImgIndex ? "opacity-100" : "opacity-40"}`}
                   draggable={false}
                 />
               </div>
