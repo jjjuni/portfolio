@@ -6,6 +6,7 @@ import {
   ONIER_DETAIL,
   PHARMQUEST_DETAIL,
   PORTFOLIO_DETAIL,
+  SODOSIRO_DETAIL,
   TRAVLOOM_DETAIL,
 } from "../../../constants/Projects";
 import useWindowStore from "../../../stores/useWindowStore";
@@ -59,6 +60,10 @@ const ProjectWindow = () => {
         setProjectDetail(PORTFOLIO_DETAIL);
         break;
 
+      case "소도시로":
+        setProjectDetail(SODOSIRO_DETAIL);
+        break;
+
       default:
         setProjectDetail(null);
         break;
@@ -99,8 +104,8 @@ const ProjectWindow = () => {
             top-1/2
 
             flex
-            h-2/3
-            w-2/3
+            h-7/10
+            w-7/10
 
             -translate-x-1/2
             -translate-y-1/2

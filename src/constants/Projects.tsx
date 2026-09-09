@@ -2,6 +2,7 @@ import {
   ChromaIcon,
   ColbrushIcon,
   EmotreeIcon,
+  ExpoIcon,
   ExtensionIcon,
   FastapiIcon,
   FigmaIcon,
@@ -11,6 +12,7 @@ import {
   MysqlIcon,
   NextjsIcon,
   NpmIcon,
+  OnestoreIcon,
   OnierIcon,
   OpenAIIcon,
   OpensourceIcon,
@@ -18,6 +20,7 @@ import {
   PortfolioIcon,
   ReactIcon,
   SKUnivIcon,
+  SodosiroIcon,
   SpringIcon,
   TailwindIcon,
   TravloomIcon,
@@ -29,6 +32,15 @@ import ProjectLogo from "../component/common/ProjectLogo";
 export const PROJECTS = [
   {
     id: 1,
+    title: "소도시로",
+    desc: "강원도 소도시 기반 AI 일정 추천 서비스",
+    icon: SodosiroIcon,
+    image: "/projects/sodosiro/Sodosiro.png",
+    parts: ["FE"],
+    skills: [ReactIcon, ExpoIcon, TailwindIcon],
+  },
+  {
+    id: 2,
     title: "Colbrush",
     desc: "색각이상자를 위한 UI 테마 자동화 라이브러리",
     icon: ColbrushIcon,
@@ -37,7 +49,7 @@ export const PROJECTS = [
     skills: [ReactIcon, TailwindIcon, NpmIcon],
   },
   {
-    id: 2,
+    id: 3,
     title: "떠나,봄",
     desc: "나만의 AI 스마트 여행플래너",
     icon: TravloomIcon,
@@ -54,7 +66,7 @@ export const PROJECTS = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "EMOTree",
     desc: "알렉시티미아를 위한 감정 훈련 플랫폼",
     icon: EmotreeIcon,
@@ -71,7 +83,7 @@ export const PROJECTS = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "ONIER",
     desc: "시각장애인 검색 효율을 높히는 AI 확장프로그램",
     icon: OnierIcon,
@@ -80,7 +92,7 @@ export const PROJECTS = [
     skills: [ReactIcon, TailwindIcon, ExtensionIcon],
   },
   {
-    id: 5,
+    id: 6,
     title: "어디약",
     desc: "해외 상비약 정보 및 약국 위치 제공 서비스",
     icon: PharmquestIcon,
@@ -89,7 +101,7 @@ export const PROJECTS = [
     skills: [ReactIcon, NextjsIcon, TailwindIcon],
   },
   {
-    id: 6,
+    id: 7,
     title: "Portfolio",
     desc: "포트폴리오 사이트",
     icon: PortfolioIcon,
@@ -320,11 +332,9 @@ export const TRAVLOOM_DETAIL: ProjectDetail = {
         type: "descs",
         label: "플랜 관리",
         descs: [
-          <p>
-            과거 여행 기록과 다가오는 여행 일정을 따로 관리 할 수 있습니다.
-          </p>,
-          <p>캘린더 형식으로 한눈에 모아볼 수 있습니다.</p>,
-          <p>다가오는 여행 일정을 메일로 받아 볼 수 있습니다.</p>,
+          <p>과거 여행 기록 및 다가오는 여행 일정 관리</p>,
+          <p>캘린더 형식으로 한눈에 모아보기</p>,
+          <p>다가오는 여행 일정 메일 알림</p>,
         ],
       },
     ],
@@ -364,24 +374,46 @@ export const TRAVLOOM_DETAIL: ProjectDetail = {
   ],
   troubleShooting: [
     {
-      label: "실시간 공유의 충돌 문제 ",
+      label: "실시간 공유의 충돌 문제",
       desc: [
         {
           trouble:
-            "실시간 공동 편집 기능을 구현하는 과정에서, 여러 사용자가 하나의 플랜에 일정을 동시에 추가할 경우 먼저 반영된 일정이 이후 업데이트에 의해 덮어써지며 데이터가 유실되는 문제가 발생했습니다.",
+            "여러 사용자가 하나의 여행 플랜을 동시에 수정할 경우, 각 클라이언트의 변경 사항이 setDoc을 통한 전체 문서 덮어쓰기로 반영되면서 다른 사용자의 일정이 유실되는 문제가 발생했습니다.",
           solution:
-            "Firestore의 setDoc 기반 overwrite 구조에서 발생한 동시성 충돌 문제를 updateDoc과 원자적 업데이트로 개선하여, 실시간 협업 환경에서 데이터 정합성을 확보했습니다.",
+            "전체 문서를 덮어쓰는 setDoc 방식 대신 변경된 일정 데이터만 updateDoc으로 갱신하도록 구조를 개선했습니다. 또한 Firestore의 원자적 업데이트를 활용해 여러 사용자가 동시에 일정을 수정하더라도 서로의 변경 사항이 덮어쓰이지 않도록 데이터 정합성을 확보했습니다.",
         },
       ],
     },
     {
-      label: "장소 정보의 한계",
+      label: "Modal 리렌더링 문제",
       desc: [
         {
           trouble:
-            "네이버 지도 API를 사용하여 개발하던 중 장소의 위치, 이미지 등의 정보를 제공하지 않아 문제가 발생했습니다.",
+            "Modal을 사용하는 과정에서 부모 컴포넌트의 상태 변경에 따라 Modal까지 불필요하게 리렌더링되는 문제가 발생했습니다. 일정 데이터가 많아질수록 사용자 인터랙션 과정에서 불필요한 렌더링이 발생할 가능성이 있었습니다.",
           solution:
-            "구글 맵 API를 사용하여 부족했던 정보를 수집하고 더 나아가 해외 여행 계획까지 추천하도록 확대했습니다.",
+            "Modal을 독립적인 컴포넌트로 분리하고 필요한 상태만 전달하도록 컴포넌트 구조를 개선했습니다. 이를 통해 부모 컴포넌트의 상태 변화와 Modal의 렌더링을 분리하여 불필요한 DOM 업데이트를 줄이고 인터랙션 성능을 개선했습니다.",
+        },
+      ],
+    },
+    {
+      label: "LLM 추천 결과의 일관성 문제",
+      desc: [
+        {
+          trouble:
+            "동일한 여행 테마와 조건을 입력하더라도 LLM의 응답에 따라 추천 장소와 일정 구성에 차이가 크게 발생했습니다. 또한 서비스에서 요구하는 일정 형식과 다른 형태의 응답이 생성되는 경우가 발생했습니다.",
+          solution:
+            "여행 기간, 여행 테마, 추천 장소 등의 입력 조건을 프롬프트에 명확하게 정의하고, LLM이 반환해야 하는 일정의 구조와 제약 조건을 구체화했습니다. 이를 통해 사용자 취향에 따른 추천 결과를 유도하고 서비스에서 활용할 수 있는 형태로 응답의 일관성을 높였습니다.",
+        },
+      ],
+    },
+    {
+      label: "장소 데이터의 한계",
+      desc: [
+        {
+          trouble:
+            "네이버 지도 API를 이용해 장소 검색 기능을 구현하던 중 검색 결과에서 제공되는 장소의 이미지 및 상세 위치 정보가 서비스에서 요구하는 수준에 미치지 못했습니다. 이로 인해 여행 장소를 탐색하고 일정을 구성하는 과정에서 필요한 정보를 충분히 제공하기 어려웠습니다.",
+          solution:
+            "장소 검색 및 상세 정보 제공에 필요한 데이터를 비교한 결과 Google Maps API로 전환했습니다. 장소의 위치 및 이미지 정보를 활용할 수 있도록 구현하고, 이를 기반으로 국내뿐만 아니라 해외 여행지까지 추천 범위를 확장했습니다.",
         },
       ],
     },
@@ -499,9 +531,9 @@ export const PHARMQUEST_DETAIL: ProjectDetail = {
       desc: [
         {
           trouble:
-            "좋아요 기능 구현 중 빠르게 누를 시 좋아요 수가 중복으로 올라가는 문제가 발생했습니다.",
+            "좋아요 기능 구현 과정에서 사용자가 버튼을 빠르게 연속으로 클릭할 경우, 짧은 시간 내 동일한 요청이 여러 번 발생하여 좋아요 수가 실제 사용자 동작보다 많이 증가하는 문제가 발생했습니다.",
           solution:
-            "쓰로틀링을 적용하여 연속적인 업데이트를 제한하고 불필요한 요청을 최소화하였습니다.",
+            "좋아요 요청에 쓰로틀링을 적용하여 일정 시간 내 중복 요청이 반복적으로 전달되지 않도록 제한했습니다. 이를 통해 빠른 연속 클릭으로 발생하는 불필요한 서버 요청을 줄이고, 좋아요 수가 중복 반영되는 문제를 방지했습니다.",
         },
       ],
     },
@@ -649,13 +681,35 @@ export const EMOTREE_DETAIL: ProjectDetail = {
   ],
   troubleShooting: [
     {
+      label: "감정 훈련 세션의 메모리 누수 문제",
+      desc: [
+        {
+          trouble:
+            "감정 훈련 세션에서 사용자의 카메라·마이크 스트림을 실시간으로 분석하는 과정에서, 훈련 세션을 반복해서 이동할수록 브라우저의 메모리 사용량이 지속적으로 증가하는 문제가 발생했습니다.",
+          solution:
+            "컴포넌트의 정리(cleanup) 시점에 카메라·마이크 스트림의 모든 트랙을 명시적으로 종료하도록 리소스 관리 로직을 재설계했습니다. 이를 통해 컴포넌트의 생명주기와 스트림 리소스의 생명주기를 일치시키고, 세션을 반복해서 이동하더라도 불필요한 리소스가 남지 않도록 하여 메모리 누수를 해결했습니다.",
+        },
+      ],
+    },
+    {
       label: "공감 유형 분류의 일관성 문제",
       desc: [
         {
           trouble:
-            "LLM을 통해 공감 유형을 분류하는 과정에서 사용자가 입력한 메시지에 대한 공감유형 추론 결과의 일관성 문제가 발생하였습니다.",
+            "LLM을 통해 사용자의 공감 메시지를 분류하는 과정에서 동일하거나 유사한 입력에도 공감 유형이 다르게 추론되는 등 결과의 일관성이 떨어지는 문제가 발생했습니다.",
           solution:
-            "LLM 대신 사전 라벨링된 데이터로 구축한 벡터 DB와의 유사도 분석을 활용하여 공감 유형 추론의 정확성과 일관성을 확보했습니다.",
+            "사전에 라벨링한 공감 유형 데이터를 임베딩하여 벡터 DB를 구축하고, 사용자 입력과 기존 데이터 간의 벡터 유사도를 비교하는 방식으로 분류 로직을 변경했습니다. 이를 통해 LLM의 생성 결과에 의존하지 않고 기존 데이터와의 유사성을 기준으로 공감 유형을 일관되게 판단하도록 개선했습니다.",
+        },
+      ],
+    },
+    {
+      label: "단일 질의 기반 공감 피드백의 한계",
+      desc: [
+        {
+          trouble:
+            "기존 감정 공감 트레이닝은 사용자의 답변을 단일 질의로 LLM에 전달하는 방식으로 구현되어, 현재 입력에 대한 피드백만 제공할 수 있었습니다. 이로 인해 이전 트레이닝에서 어떤 답변을 했는지 고려하지 못해, 사용자의 공감 방식이 이전 시도 대비 어떻게 개선되었는지 확인하기 어려웠습니다.",
+          solution:
+            "사용자별 트레이닝 세션에 Memory를 적용하여 이전 대화와 피드백을 유지하도록 개선했습니다. 현재 답변을 이전 트레이닝 결과와 함께 분석할 수 있도록 프롬프트 구조를 변경하고, 이전 시도 대비 개선된 점과 보완이 필요한 부분을 제공하도록 구현했습니다. 이를 통해 단발성 피드백에서 벗어나 사용자의 공감 능력 변화를 지속적으로 확인할 수 있도록 개선했습니다.",
         },
       ],
     },
@@ -746,7 +800,7 @@ export const ONIER_DETAIL: ProjectDetail = {
   ],
   troubleShooting: [
     {
-      label: "단발성 질의 처리 문제",
+      label: "대화형 검색을 위한 세션 유지 문제",
       desc: [
         {
           trouble:
@@ -854,5 +908,162 @@ export const PORTFOLIO_DETAIL: ProjectDetail = {
         },
       ],
     },
+  ],
+};
+
+export const SODOSIRO_DETAIL: ProjectDetail = {
+  title: "소도시로",
+  background: "/projects/sodosiro/Sodosiro.png",
+  logo: (
+    <ProjectLogo title={"소도시로"} className={`font-gmarket text-[#f1f3f4]`} />
+  ),
+  desc: "강원도 소도시 기반 AI 일정 추천 서비스",
+  skills: [ReactIcon, ExpoIcon, TailwindIcon],
+  links: [
+    {
+      icon: OnestoreIcon,
+      link: "https://m.onestore.co.kr/v2/ko-kr/app/0001008443",
+    },
+    {
+      icon: GithubIcon,
+      link: "https://github.com/Sodosiro",
+    },
+  ],
+  period: "2026.07 ~ 2026.09",
+  team: "Design 1명, FE 2명, BE 2명",
+  parts: ["FE"],
+  overview: [
+    <p>
+      원특별자치도는 다양한 관광 자원을 보유하고 있지만, 일부 주요 관광지에
+      관광객이 집중되면서 <BoldSpan>오버투어리즘 문제</BoldSpan>가 발생하고
+      있으며, 상대적으로 소도시의 관광지는 충분히 알려지지 않고 있습니다. 또한
+      여행자는 익숙한 주요 관광지 중심의 정보 속에서 새로운 여행지를 발견하고
+      자신의 취향에 맞는 여행 일정을 계획하기 어려운 문제를 겪고 있습니다.
+    </p>,
+    <p>
+      이를 해결하기 위해 강원도의 소도시 여행지를 탐색하고, AI를 통해 여행
+      기간과 스타일에 맞는 여행 코스를 추천받을 수 있도록 하여 관광객의{" "}
+      <BoldSpan>소도시 여행을 유도하고 관광 수요를 분산시키는</BoldSpan> 소도시
+      특화 여행 서비스를 기획했습니다.
+    </p>,
+  ],
+  feature: {
+    desc: (
+      <p>
+        소도시로는 강원도의 다양한 여행지를 탐색하고, AI를 통해 나에게 맞는 여행
+        코스를 만들 수 있는 여행 서비스입니다.
+      </p>
+    ),
+    details: [
+      {
+        type: "descs",
+        label: "강원도 여행지 탐색",
+        descs: [
+          <p>
+            강원도의 다양한 관광지와 주변 여행지를 탐색하고 상세 정보를 확인
+          </p>,
+          <p>지도 기반으로 여행지의 위치를 확인하고 주변 관광지를 함께 탐색</p>,
+        ],
+      },
+      {
+        type: "descs",
+        label: "축제 및 인기 관광지 탐색",
+        descs: [
+          <p>강원도에서 진행되는 다양한 축제 정보 제공</p>,
+          <p>Daum 블로그·카페 관광지 언급량 기반 인기 관광지 제공</p>,
+        ],
+      },
+      {
+        type: "descs",
+        label: "AI 여행 코스 추천",
+        descs: [
+          <p>여행 기간 및 여행 스타일 기반 맞춤형 여행 코스 생성</p>,
+          <p>추천된 여행 일정과 이동 경로를 지도에서 함께 확인</p>,
+        ],
+      },
+      {
+        type: "descs",
+        label: "GPS 기반 관광지 방문 인증",
+        descs: [
+          <p>GPS 위치 정보 기반 관광지 방문 여부 확인 및 인증</p>,
+          <p>
+            인증한 관광지를 빙고 보드에 반영, 조건 달성 시 소도시별 뱃지 획득
+          </p>,
+        ],
+      },
+      {
+        type: "descs",
+        label: "여행 피드 공유 및 관광지 발견",
+        descs: [
+          <p>다녀온 관광지의 여행 경험을 피드로 공유</p>,
+          <p>
+            다른 사용자의 여행 피드를 통해 새로운 관광지를 발견하고 관심 있는
+            장소를 저장
+          </p>,
+        ],
+      },
+    ],
+  },
+  contribution: [
+    {
+      label: "React Native 기반 앱 구조 설계 및 구현",
+      desc: [
+        "서비스의 주요 기능과 사용자 흐름을 고려하여 화면 구조 및 네비게이션 구조를 설계했습니다.",
+        "React Native와 Expo Router를 기반으로 각 기능을 모듈화하고 화면 간 이동 및 딥링크를 구현했습니다.",
+      ],
+    },
+    {
+      label: "카카오맵 WebView 연동",
+      desc: [
+        "React Native에서 카카오맵을 활용할 수 있도록 WebView 기반의 지도 환경을 구축했습니다.",
+        "postMessage를 활용하여 React Native와 WebView 간 양방향 통신 구조를 구현했습니다.",
+        "여행지 ID를 기반으로 앱의 일정 데이터와 지도 마커를 연결하여 지도와 일정이 하나의 흐름으로 동작하도록 구현했습니다.",
+      ],
+    },
+    {
+      label: "GPS 기반 관광지 방문 인증",
+      desc: [
+        "GPS 위치 정보를 기반으로 관광지 방문 여부를 확인하고 방문 인증을 처리했습니다.",
+        "인증한 관광지를 빙고 보드에 반영하고, 조건을 달성하면 소도시별 뱃지를 획득할 수 있도록 구현했습니다.",
+      ],
+    },
+    {
+      label: "여행 피드 기능 구현",
+      desc: [
+        "사용자가 방문한 관광지의 여행 경험을 피드로 공유하고, 다른 사용자가 피드를 통해 새로운 관광지를 발견하고 저장할 수 있도록 탐색 및 저장 기능을 구현했습니다.",
+      ],
+    },
+  ],
+  troubleShooting: [
+    {
+      label: "React Native와 WebView 간 지도 데이터 동기화 문제",
+      desc: [
+        {
+          trouble:
+            "카카오맵을 WebView에서 구현하면서 React Native에서 관리하는 여행지 데이터와 WebView 내부의 지도 상태를 동기화해야 했습니다. 초기에는 지도 상태와 React Native의 상태가 서로 독립적으로 관리되면서 여행지 선택이나 일정 변경 시 지도 마커가 즉시 반영되지 않는 문제가 발생했습니다.",
+          solution:
+            "React Native와 WebView 간 postMessage 기반의 양방향 통신 구조를 구현했습니다. React Native에서 변경된 여행지 정보를 WebView로 전달하고, WebView에서는 지도 이벤트 및 선택된 장소 정보를 다시 React Native로 전달하도록 데이터 흐름을 구성했습니다. 이를 통해 앱의 여행 일정 상태와 지도 상태를 일관되게 유지할 수 있도록 개선했습니다.",
+        },
+      ],
+    },
+    {
+      label: "지도 마커 클러스터링 상태 관리 문제",
+      desc: [
+        {
+          trouble:
+            "많은 여행지를 지도에 표시하기 위해 마커 클러스터링을 적용하는 과정에서, 지도에 표시되는 마커와 React Native에서 관리하는 여행지 상태가 서로 달라지는 문제가 발생했습니다. 특히 여행지를 추가하거나 선택한 후 마커를 갱신하는 과정에서 기존 마커가 남거나 선택 상태가 정상적으로 반영되지 않는 문제가 발생했습니다.",
+          solution:
+            "현재 지도에 바인딩된 마커를 별도로 추적할 수 있도록 참조 객체를 활용해 마커 상태를 관리하고, 여행지 데이터가 변경될 때 기존 마커와 변경된 데이터를 비교하여 필요한 마커만 갱신하도록 구조를 개선했습니다. 또한 WebView와의 메시지 통신을 통해 마커 상태를 동기화하여 지도에 표시되는 여행지와 앱의 데이터 상태가 일치하도록 개선했습니다.",
+        },
+      ],
+    },
+  ],
+  images: [
+    "/projects/sodosiro/sodosiro1_hero.png",
+    "/projects/sodosiro/sodosiro2_roulette.png",
+    "/projects/sodosiro/sodosiro3_region.png",
+    "/projects/sodosiro/sodosiro4_course.png",
+    "/projects/sodosiro/sodosiro5_trip.png",
+    "/projects/sodosiro/sodosiro6_bingo.png",
   ],
 };

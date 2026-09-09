@@ -14,6 +14,7 @@ export { default as PinIcon } from "./pin_icon.svg?react";
 export { default as AwsIcon } from "./aws_icon.svg?react";
 export { default as ChromaIcon } from "./chroma_icon.svg?react";
 export { default as DockerIcon } from "./docker_icon.svg?react";
+export { default as ExpoIcon } from "./expo_icon.svg?react";
 export { default as FastapiIcon } from "./fastapi_icon.svg?react";
 export { default as FigmaIcon } from "./figma_icon.svg?react";
 export { default as FirebaseIcon } from "./firebase_icon.svg?react";
@@ -35,6 +36,7 @@ export { default as TsIcon } from "./typescript_icon.svg?react";
 export { default as VercelIcon } from "./vercel_icon.svg?react";
 
 export { default as ExtensionIcon } from "./extension_icon.svg?react";
+export { default as OnestoreIcon } from "./onestore_icon.svg?react";
 export { default as YoutubeIcon } from "./youtube_icon.svg?react";
 
 export { default as ColbrushIcon } from "./colbrush_icon.svg?react";
@@ -42,6 +44,7 @@ export { default as EmotreeIcon } from "./emotree_icon.svg?react";
 export { default as OnierIcon } from "./onier_icon.svg?react";
 export { default as PharmquestIcon } from "./pharmquest_icon.svg?react";
 export { default as PortfolioIcon } from "./portfolio_icon.svg?react";
+export { default as SodosiroIcon } from "./sodosiro_icon.svg?react";
 export { default as TravloomIcon } from "./travloom_icon.svg?react";
 
 export { default as EmailDockIcon } from "./email_dock_icon.svg?react";
